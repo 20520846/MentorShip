@@ -1,11 +1,36 @@
 using MentorShip.Models;
 using MentorShip.Services;
+using NServiceBus;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host.UseNServiceBus(context =>
+{
+    var endpointConfiguration = new EndpointConfiguration("payment");
+    endpointConfiguration.UseTransport<RabbitMQTransport>();
+    var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+    transport.ConnectionString("host=localhost;username=guest;password=guest");
+    var routerConfig = transport.Routing();
+    routerConfig.RouteToEndpoint(
+        assembly: typeof(NotificationMessage).Assembly,
+        destination: "payment");
+
+    transport.CustomMessageIdStrategy(
+        customIdStrategy: deliveryArgs =>
+        {
+            return Guid.NewGuid().ToString();
+        });
+    //transport.ConnectionString("amqp://guest:guest@localhost:5672/");
+    transport.UseDirectRoutingTopology(QueueType.Quorum);
+
+    //endpointConfiguration.SendOnly();
+
+    return endpointConfiguration;
+});
+
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<MongoDBService>();
-
 // Add services to the container.
 
 builder.Services.AddControllers();

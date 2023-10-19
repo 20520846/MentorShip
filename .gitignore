@@ -1,0 +1,14 @@
+# Ignore Visual Studio files and folders
+.vs/
+bin/
+obj/
+
+# Ignore .NET Core/ASP.NET Core artifacts
+obj/Debug/
+obj/Release/
+obj/Debug/net*/
+obj/Release/net*/
+
+# Ignore specific files or patterns
+*.log
+*.cache
