@@ -8,8 +8,6 @@ var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json")
     .Build();
-string currentPrjPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-var licensePath = Path.Combine(currentPrjPath, "NserviceBus", "License.xml");
 
 builder.Host.UseNServiceBus(context =>
 {
@@ -17,10 +15,12 @@ builder.Host.UseNServiceBus(context =>
     var endpointConfiguration = new EndpointConfiguration("payment");
     endpointConfiguration.UseTransport<RabbitMQTransport>();
     //add license
-    endpointConfiguration.LicensePath(licensePath);
+    endpointConfiguration.LicensePath("NserviceBus\\License.xml");
+
     var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
     string connectionString = configuration.GetConnectionString("RabbitMQ");
     transport.ConnectionString(connectionString);
+    //define endpoint 
     var routerConfig = transport.Routing();
     routerConfig.RouteToEndpoint(
         assembly: typeof(NotificationMessage).Assembly,
@@ -42,6 +42,7 @@ builder.Host.UseNServiceBus(context =>
 
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<MongoDBService>();
+builder.Services.AddSingleton<UserService>();
 // Add services to the container.
 
 builder.Services.AddControllers();

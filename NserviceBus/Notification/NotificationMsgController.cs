@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NServiceBus;
 using System.Threading.Tasks;
 
-namespace MongoExample.Controllers;
+namespace MentorShip.Controllers;
 
 [Controller]
 [Route("api/[controller]")]

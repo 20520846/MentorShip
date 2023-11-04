@@ -5,10 +5,13 @@ using MongoDB.Bson;
 
 namespace MentorShip.Services;
 
-public class MongoDBService{
-    public MongoDBService(IOptions<MongoDBSettings> mongoDBSettings){
-        MongoClient client = new(mongoDBSettings.Value.ConnectionURI);
-        IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
+public class MongoDBService
+{
+    protected readonly IMongoDatabase database;
+
+    public MongoDBService(IOptions<MongoDBSettings> mongoDBSettings)
+    {
+        MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
+        database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
     }
 }
-
