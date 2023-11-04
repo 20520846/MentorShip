@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<license type="Non-Production Development" Applications="All" expiration="2024-02-02" id="709363f1-6c94-4472-83e1-f6a2829b53de">
+  <name>JBkhanhtran@gmail.com</name>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+      <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+      <Reference URI="">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <DigestValue>51fAhuLhJ2ZSO9ST0HmcXVqnDF0=</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue>HZGaIXWt69s9Qho5EOKGqYDcUcVgKQGLcaVwwtHW/KgMTDGkC6YYrVqem86jNjh70aed/Infad3hMiQVhSiaCnKJLnxz3yFLjlWNw+PZTepPdmX+96j2VXNCmeBANaSEquviaE2zSm+sePeCbbYQM53s8xmlEW+XhJ0Vo/il2bg=</SignatureValue>
+  </Signature>
+</license>

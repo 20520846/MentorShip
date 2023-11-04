@@ -1,30 +1,41 @@
-using MentorShip.Models;
+﻿using MentorShip.Models;
 using MentorShip.Services;
 using NServiceBus;
 
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .Build();
+string currentPrjPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+var licensePath = Path.Combine(currentPrjPath, "NserviceBus", "License.xml");
 
 builder.Host.UseNServiceBus(context =>
 {
+    // 
     var endpointConfiguration = new EndpointConfiguration("payment");
     endpointConfiguration.UseTransport<RabbitMQTransport>();
+    //add license
+    endpointConfiguration.LicensePath(licensePath);
     var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-    transport.ConnectionString("host=localhost;username=guest;password=guest");
+    string connectionString = configuration.GetConnectionString("RabbitMQ");
+    transport.ConnectionString(connectionString);
     var routerConfig = transport.Routing();
     routerConfig.RouteToEndpoint(
         assembly: typeof(NotificationMessage).Assembly,
         destination: "payment");
 
+    //add custom message id field
     transport.CustomMessageIdStrategy(
         customIdStrategy: deliveryArgs =>
         {
             return Guid.NewGuid().ToString();
         });
-    //transport.ConnectionString("amqp://guest:guest@localhost:5672/");
+  
     transport.UseDirectRoutingTopology(QueueType.Quorum);
 
-    //endpointConfiguration.SendOnly();
+    endpointConfiguration.SendOnly();
 
     return endpointConfiguration;
 });
