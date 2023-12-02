@@ -2928,20 +2928,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jbkha\\.nuget\\packages\\": {}
+    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Syncfusion\\Essential Studio\\WPF\\19.3.0.43\\ToolboxNuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Workspace\\.NET\\MentorShip\\MentorShip.csproj",
+      "projectUniqueName": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
       "projectName": "MentorShip",
-      "projectPath": "D:\\Workspace\\.NET\\MentorShip\\MentorShip.csproj",
-      "packagesPath": "C:\\Users\\jbkha\\.nuget\\packages\\",
-      "outputPath": "D:\\Workspace\\.NET\\MentorShip\\obj\\",
+      "projectPath": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
+      "packagesPath": "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\",
+      "outputPath": "F:\\SourceCode\\dotnet\\MentorShip\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Syncfusion\\Essential Studio\\WPF\\19.3.0.43\\ToolboxNuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\jbkha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\NITRO 5 PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -3014,7 +3022,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

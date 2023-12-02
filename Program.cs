@@ -43,6 +43,7 @@ builder.Host.UseNServiceBus(context =>
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<MongoDBService>();
 builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<CourseService>();
 // Add services to the container.
 
 builder.Services.AddControllers();
