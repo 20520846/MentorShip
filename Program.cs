@@ -32,7 +32,7 @@ builder.Host.UseNServiceBus(context =>
         {
             return Guid.NewGuid().ToString();
         });
-  
+
     transport.UseDirectRoutingTopology(QueueType.Quorum);
 
     endpointConfiguration.SendOnly();
@@ -43,7 +43,13 @@ builder.Host.UseNServiceBus(context =>
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<MongoDBService>();
 builder.Services.AddSingleton<UserService>();
+<<<<<<< HEAD
 builder.Services.AddSingleton<ApplicationService>();
+=======
+builder.Services.AddSingleton<CourseService>();
+builder.Services.AddSingleton<MentorService>();
+builder.Services.AddSingleton<MenteeService>();
+>>>>>>> ef12f281764ba24913fcd0c293a6f8be69e478e4
 // Add services to the container.
 
 //builder.Services.AddControllers().AddJsonOptions(options =>
