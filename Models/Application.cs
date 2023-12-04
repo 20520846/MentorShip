@@ -8,7 +8,7 @@ public enum ApplicationStatus
 {
     Approved,
     Rejected, 
-    Accepted  
+    Accepted   
 }
 
 public class Application
@@ -24,7 +24,7 @@ public class Application
 
     [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
     [JsonPropertyName("createdAt")]
-    public DateTime CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
     [JsonPropertyName("status")]
     public ApplicationStatus Status { get; set; }
@@ -33,5 +33,5 @@ public class Application
     public List<string> ImageUrls { get; set; } = new List<string>();
 
     [JsonPropertyName("description")]
-    public string Description { get; set; } = null;
+    public string? Description { get; set; } = null;
 }
