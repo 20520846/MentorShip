@@ -1,27 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\MentorShip.csproj": {}
+    "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\MentorShip.csproj": {
+    "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\MentorShip.csproj",
+        "projectUniqueName": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
         "projectName": "MentorShip",
-        "projectPath": "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\MentorShip.csproj",
-        "packagesPath": "C:\\Users\\nosc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\obj\\",
+        "projectPath": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
+        "packagesPath": "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\",
+        "outputPath": "F:\\SourceCode\\dotnet\\MentorShip\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Syncfusion\\Essential Studio\\WPF\\19.3.0.43\\ToolboxNuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nosc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\NITRO 5 PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
         ],
-        "originalTargetFrameworks": ["net7.0"],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
@@ -33,7 +37,9 @@
           }
         },
         "warningProperties": {
-          "warnAsError": ["NU1605"]
+          "warnAsError": [
+            "NU1605"
+          ]
         }
       },
       "frameworks": {
