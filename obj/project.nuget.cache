@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "crbqqsmkus3Jr/QfgYKcuVm3EU3GTpbqqM4IiM0BWgv28EBAdWUwNBQFiamIOkwn5KbJFgFbgyh0jAY5IOc9AQ==",
+  "dgSpecHash": "yXRsZKpL9fs92PpkJDdDZCABOivKsMZApesxX3x1pmYzTowIuTWBmlnlxAA3mnrbbk+omvyVx8BOKSq4NDPG5Q==",
   "success": true,
   "projectFilePath": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
   "expectedPackageFiles": [
@@ -48,10 +48,10 @@
     "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\rabbitmq.client\\6.4.0\\rabbitmq.client.6.4.0.nupkg.sha512",
     "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
-    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
-    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
-    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
-    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
+    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
     "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.2\\system.diagnostics.diagnosticsource.7.0.2.nupkg.sha512",
     "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
@@ -65,6 +65,7 @@
     "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\system.text.json\\7.0.3\\system.text.json.7.0.3.nupkg.sha512",
     "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\system.threading.channels\\4.7.1\\system.threading.channels.4.7.1.nupkg.sha512",
+    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\yamldotnet\\13.7.1\\yamldotnet.13.7.1.nupkg.sha512",
     "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\zstdsharp.port\\0.6.2\\zstdsharp.port.0.6.2.nupkg.sha512"
   ],
   "logs": []
