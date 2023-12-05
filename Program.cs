@@ -90,7 +90,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     //app.UseSwaggerUI();
     // Generate Swagger YAML file
-    app.UseSwaggerUI(x => { x.SwaggerEndpoint("v1/swagger.json", "My API"); });
+    
+    app.UseSwaggerUI(x => { x.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1"); });
 }
 
 
