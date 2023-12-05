@@ -59,7 +59,7 @@ builder.Services.AddSingleton<MenteeService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
@@ -81,9 +81,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwaggerUI();
     // Generate Swagger YAML file
-    app.UseSwaggerUI(x => { x.SwaggerEndpoint("swagger/v1/swagger.yaml", "My API"); });
+    app.UseSwaggerUI(x => { x.SwaggerEndpoint("v1/swagger.json", "My API"); });
 }
 
 
