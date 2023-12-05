@@ -71,9 +71,7 @@
             "related": ".xml"
           }
         },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        "frameworkReferences": ["Microsoft.AspNetCore.App"]
       },
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
         "type": "package",
@@ -855,9 +853,7 @@
             "related": ".pdb;.xml"
           }
         },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        "frameworkReferences": ["Microsoft.AspNetCore.App"]
       },
       "Swashbuckle.AspNetCore.SwaggerGen/6.5.0": {
         "type": "package",
@@ -887,9 +883,7 @@
             "related": ".pdb;.xml"
           }
         },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        "frameworkReferences": ["Microsoft.AspNetCore.App"]
       },
       "System.Buffers/4.5.1": {
         "type": "package",
@@ -2978,32 +2972,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Syncfusion\\Essential Studio\\WPF\\19.3.0.43\\ToolboxNuGetPackages": {}
+    "C:\\Users\\nosc\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
+      "projectUniqueName": "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\MentorShip.csproj",
       "projectName": "MentorShip",
-      "projectPath": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
-      "packagesPath": "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\",
-      "outputPath": "F:\\SourceCode\\dotnet\\MentorShip\\obj\\",
+      "projectPath": "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\MentorShip.csproj",
+      "packagesPath": "C:\\Users\\nosc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Syncfusion\\Essential Studio\\WPF\\19.3.0.43\\ToolboxNuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\NITRO 5 PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nosc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
-      "originalTargetFrameworks": [
-        "net7.0"
-      ],
+      "originalTargetFrameworks": ["net7.0"],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
@@ -3015,9 +3004,7 @@
         }
       },
       "warningProperties": {
-        "warnAsError": [
-          "NU1605"
-        ]
+        "warnAsError": ["NU1605"]
       }
     },
     "frameworks": {

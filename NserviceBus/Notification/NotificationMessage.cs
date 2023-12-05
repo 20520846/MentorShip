@@ -1,4 +1,4 @@
-public class NotificationMessage : IMessage
+public class NotificationMessage : ICommand
 {
     public string Type { get; set; }
     public Payload Payload { get; set; }

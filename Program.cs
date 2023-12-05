@@ -4,6 +4,7 @@ using NServiceBus;
 using Microsoft.OpenApi.Models;
 using YamlDotNet.Serialization;
 
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = new ConfigurationBuilder()
@@ -34,7 +35,7 @@ builder.Host.UseNServiceBus(context =>
         {
             return Guid.NewGuid().ToString();
         });
-  
+
     transport.UseDirectRoutingTopology(QueueType.Quorum);
 
     endpointConfiguration.SendOnly();
@@ -45,13 +46,29 @@ builder.Host.UseNServiceBus(context =>
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<MongoDBService>();
 builder.Services.AddSingleton<UserService>();
+<<<<<<< HEAD
+builder.Services.AddSingleton<ApplicationService>();
+=======
 builder.Services.AddSingleton<CourseService>();
+builder.Services.AddSingleton<MentorService>();
+builder.Services.AddSingleton<MenteeService>();
+>>>>>>> ef12f281764ba24913fcd0c293a6f8be69e478e4
 // Add services to the container.
 
+//builder.Services.AddControllers().AddJsonOptions(options =>
+//{
+//    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+//});
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
+
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -74,6 +91,8 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+
+app.UseCors("corsapp");
 
 app.UseAuthorization();
 
