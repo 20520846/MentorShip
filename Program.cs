@@ -66,6 +66,13 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
 }));
 
+builder.Services.AddCors(options => 
+    {
+        options.AddPolicy("AllowSwaggerUI", builder => {
+            builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        });
+    }
+);
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -90,6 +97,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("corsapp");
+app.UseCors("AllowSwaggerUI");
 
 app.UseAuthorization();
 
