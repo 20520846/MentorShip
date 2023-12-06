@@ -28,6 +28,11 @@ jobs:
         with:
           name: api-spec-file
           path: openapi.json
+      - name: Debugging
+        run: |
+            pwd
+            ls -la
+        
   deploy:
     needs: generate-openapi-spec
     runs-on: ubuntu-latest
