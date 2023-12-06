@@ -20,6 +20,10 @@ jobs:
       - name: Install tools
         working-directory: ./
         run: dotnet tool restore
+      - name: Debugging
+        run: |
+            pwd
+            ls -la
       - name: Generate openapi.json
         working-directory: ./
         run: dotnet swagger tofile --output ".\openapi.json" ".\bin\Release\net7.0\publish\MentorShip.dll" "v1"
@@ -28,10 +32,7 @@ jobs:
         with:
           name: api-spec-file
           path: openapi.json
-      - name: Debugging
-        run: |
-            pwd
-            ls -la
+      
         
   deploy:
     needs: generate-openapi-spec
