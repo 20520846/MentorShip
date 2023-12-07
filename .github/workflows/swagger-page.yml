@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - gh-pages
+      - deploy
 jobs:
   generate-openapi-spec:
     runs-on: windows-latest
