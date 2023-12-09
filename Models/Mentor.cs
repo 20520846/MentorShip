@@ -18,9 +18,6 @@ public class Mentor
     [JsonPropertyName("id")]
     public string? Id { get; set; }
 
-    [JsonPropertyName("userId")]
-    public string UserId { get; set; } = null;
-
     // [JsonPropertyName("email")]
     // public string Email { get; set; } = null;
 
@@ -50,7 +47,4 @@ public class Mentor
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-    [JsonPropertyName("approvalStatus")]
-    [BsonRepresentation(BsonType.String)]
-    public ApprovalStatus ApprovalStatus { get; set; } = ApprovalStatus.Pending;
 }

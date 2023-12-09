@@ -26,7 +26,7 @@ builder.Host.UseNServiceBus(context =>
     //define endpoint 
     var routerConfig = transport.Routing();
     routerConfig.RouteToEndpoint(
-        assembly: typeof(NotificationMessage).Assembly,
+        assembly: typeof(Message).Assembly,
         destination: "payment");
 
     //add custom message id field
@@ -48,7 +48,9 @@ builder.Services.AddSingleton<MongoDBService>();
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<ApplicationService>();
 builder.Services.AddSingleton<CourseService>();
+builder.Services.AddSingleton<SkillService>();
 builder.Services.AddSingleton<MentorService>();
+builder.Services.AddSingleton<PaymentService>();
 builder.Services.AddSingleton<MenteeService>();
 // Add services to the container.
 

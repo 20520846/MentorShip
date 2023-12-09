@@ -15,15 +15,16 @@ namespace MentorShip.Services
         }
         public async Task<Course> GetCourseById(string id)
         {
-            var course = await _courseCollection.Find(u => u.Id == id).FirstOrDefaultAsync();
+            var course = await _courseCollection.Find(u => u.Id == id && u.DeletedAt == null).FirstOrDefaultAsync();
             return course;
         }
 
         public async Task<List<Course>> GetListAsync()
         {
-            var courses = await _courseCollection.Find(new BsonDocument()).ToListAsync();
+            var courses = await _courseCollection.Find(u => u.DeletedAt == null).ToListAsync();
             return courses;
         }
+
         public async Task CreateAsync(Course course){
             await _courseCollection.InsertOneAsync(course);
             return;

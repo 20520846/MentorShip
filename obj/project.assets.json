@@ -2978,28 +2978,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Syncfusion\\Essential Studio\\WPF\\19.3.0.43\\ToolboxNuGetPackages": {}
+    "C:\\Users\\jbkha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
+      "projectUniqueName": "D:\\Workspace\\.NET\\MentorShip\\MentorShip.csproj",
       "projectName": "MentorShip",
-      "projectPath": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
-      "packagesPath": "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\",
-      "outputPath": "F:\\SourceCode\\dotnet\\MentorShip\\obj\\",
+      "projectPath": "D:\\Workspace\\.NET\\MentorShip\\MentorShip.csproj",
+      "packagesPath": "C:\\Users\\jbkha\\.nuget\\packages\\",
+      "outputPath": "D:\\Workspace\\.NET\\MentorShip\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Syncfusion\\Essential Studio\\WPF\\19.3.0.43\\ToolboxNuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\NITRO 5 PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
+        "C:\\Users\\jbkha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -3076,8 +3068,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Workspace\\.NET\\MentorShip\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

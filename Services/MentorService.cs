@@ -25,5 +25,10 @@ namespace MentorShip.Services
             await _mentorCollection.InsertOneAsync(mentor);
             return mentor;
         }
+        public async Task<List<Mentor>> GetAllMentors()
+        {
+            return await _mentorCollection.Find(a => true).ToListAsync();
+        }
+
     }
 }
