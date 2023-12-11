@@ -1,7 +1,7 @@
 using MentorShip.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using MongoDB.Bson;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MentorShip.Services
@@ -9,25 +9,27 @@ namespace MentorShip.Services
     public class PaymentService : MongoDBService
     {
         private readonly IMongoCollection<Payment> _paymentCollection;
+
         public PaymentService(IOptions<MongoDBSettings> mongoDBSettings) : base(mongoDBSettings)
         {
-            _paymentCollection = database.GetCollection<Payment>("payment");
+            _paymentCollection = database.GetCollection<Payment>("payments");
         }
-        public async Task<Payment> GetPaymentById(string id)
+
+        public async Task<Payment> CreatePayment(Payment payment)
         {
-            var payment = await _paymentCollection.Find(u => u.Id == id).FirstOrDefaultAsync();
+
+            await _paymentCollection.InsertOneAsync(payment);
             return payment;
         }
 
-        public async Task<List<Payment>> GetListAsync()
+        public async Task<List<Payment>> GetAllPayments()
         {
-            var payments = await _paymentCollection.Find(new BsonDocument()).ToListAsync();
-            return payments;
+            return await _paymentCollection.Find(payment => true).ToListAsync();
         }
-        public async Task CreateAsync(Payment payment)
+
+        public async Task<List<Payment>> GetPaymentsByUserId(string userId)
         {
-            await _paymentCollection.InsertOneAsync(payment);
-            return;
+            return await _paymentCollection.Find(payment => payment.MenteeId == userId).ToListAsync();
         }
     }
 }

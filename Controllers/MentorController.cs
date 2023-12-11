@@ -20,6 +20,15 @@ namespace MentorShip.Controllers
             return await _mentorService.GetMentorById(id);
         }
 
+        [HttpGet("get")]
+
+        public async Task<IActionResult> GetAllMentors()
+        {
+            var mentors = await _mentorService.GetAllMentors();
+            return Ok(new { data = mentors });
+        }
+
+
         [HttpPost("create")]
         public async Task<IActionResult> Post([FromBody] Mentor mentor)
         {

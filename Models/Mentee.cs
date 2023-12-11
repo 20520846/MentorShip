@@ -13,10 +13,14 @@ public class Mentee
     ]
     public string? Id { get; set; }
 
-    [JsonPropertyName("userId")]
-    public string UserId { get; set; } = null;
+    [
+     BsonId,
+     BsonRepresentation(BsonType.ObjectId),
+     JsonPropertyName("userId")
+ ]
+    public string? UserId { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
-
+    
 
 }

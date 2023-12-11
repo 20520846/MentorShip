@@ -1,8 +1,9 @@
-﻿namespace  MentorShip.Models;
+﻿namespace MentorShip.Models;
+using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System;
 
 public class Course
 {
@@ -14,6 +15,10 @@ public class Course
     [JsonPropertyName("mentorId")]
     public string MentorId { get; set; } = null;
 
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = null;
+
     [JsonPropertyName("price")]
     public decimal Price { get; set; } = 0;
 
@@ -22,4 +27,11 @@ public class Course
 
     [JsonPropertyName("createdAt")]
     public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+    [JsonPropertyName("skillIds")]
+    public List<string> SkillIds { get; set; } = new List<string>();
+
+    [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+    [JsonPropertyName("deletedAt")]
+    public DateTime? DeletedAt { get; set; } = null;
 }
