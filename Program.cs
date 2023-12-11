@@ -50,6 +50,8 @@ builder.Services.AddSingleton<ApplicationService>();
 builder.Services.AddSingleton<CourseService>();
 builder.Services.AddSingleton<MentorService>();
 builder.Services.AddSingleton<MenteeService>();
+builder.Services.AddSingleton<PaymentService>();
+builder.Services.AddSingleton<IConfiguration>(configuration);
 // Add services to the container.
 
 //builder.Services.AddControllers().AddJsonOptions(options =>
@@ -70,7 +72,7 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-    
+
 });
 
 
