@@ -29,7 +29,7 @@ namespace MentorShip.Services
         {
             return await _mentorCollection.Find(a => true).ToListAsync();
         }
-        public async Task<List<Mentor>> SearchMentor(string? name = null, List<string>? skillIds = null, int? minPrice = null, int? maxPrice = null)
+        public async Task<List<Mentor>> SearchMentor(string? name = null, string? skillId = null, int? minPrice = null, int? maxPrice = null)
         {
             var builder = Builders<Mentor>.Filter;
             var filter = builder.Empty;
@@ -39,9 +39,9 @@ namespace MentorShip.Services
                 var nameFilter = builder.Where(m => m.FirstName.Contains(name) || m.LastName.Contains(name));
                 filter = builder.And(filter, nameFilter);
             }
-            if (skillIds != null && skillIds.Any())
+            if (!string.IsNullOrEmpty(skillId))
             {
-                var skillFilter = builder.AnyIn(m => m.SkillIds, skillIds);
+                var skillFilter = builder.Where(m => m.SkillIds.Contains(skillId));
                 filter = builder.And(filter, skillFilter);
             }
             if (minPrice.HasValue)
@@ -54,6 +54,7 @@ namespace MentorShip.Services
                 var maxPriceFilter = builder.Lte(m => m.Price, maxPrice.Value);
                 filter = builder.And(filter, maxPriceFilter);
             }
+
             return await _mentorCollection.Find(filter).ToListAsync();
         }
 

@@ -24,5 +24,14 @@ public class Mentee
 
     [JsonPropertyName("dateOfBirth")]
     public DateTime? DateOfBirth { get; set; } = null;
-  
+
+    [JsonPropertyName("price")]
+    public decimal? Price { get; set; } = 0;
+
+    [JsonPropertyName("ratingStar")]
+    public double? RatingStar { get; set; } = 0;
+
+    [JsonPropertyName("introduction")]
+    public string? Introduction { get; set; } = string.Empty;
+
 }
