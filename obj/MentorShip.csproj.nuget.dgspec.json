@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\MentorShip.csproj": {}
+    "D:\\Workspace\\.NET\\MentorShip\\MentorShip.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\MentorShip.csproj": {
+    "D:\\Workspace\\.NET\\MentorShip\\MentorShip.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\MentorShip.csproj",
+        "projectUniqueName": "D:\\Workspace\\.NET\\MentorShip\\MentorShip.csproj",
         "projectName": "MentorShip",
-        "projectPath": "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\MentorShip.csproj",
-        "packagesPath": "C:\\Users\\nosc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nosc\\Desktop\\Project_Git\\Backend\\MentorShip\\obj\\",
+        "projectPath": "D:\\Workspace\\.NET\\MentorShip\\MentorShip.csproj",
+        "packagesPath": "C:\\Users\\jbkha\\.nuget\\packages\\",
+        "outputPath": "D:\\Workspace\\.NET\\MentorShip\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\nosc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\jbkha\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
-        "originalTargetFrameworks": ["net7.0"],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
@@ -33,7 +31,9 @@
           }
         },
         "warningProperties": {
-          "warnAsError": ["NU1605"]
+          "warnAsError": [
+            "NU1605"
+          ]
         }
       },
       "frameworks": {

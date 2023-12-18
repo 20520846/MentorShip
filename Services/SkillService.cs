@@ -35,5 +35,12 @@ namespace MentorShip.Services
             await _skillCollection.InsertOneAsync(skill);
             return skill;
         }
+
+        public async Task<List<Skill>> GetSkillsByFieldId(string fieldId)
+        {
+            var filter = Builders<Skill>.Filter.Eq(s => s.FieldId, fieldId);
+            return await _skillCollection.Find(filter).ToListAsync();
+        }
+
     }
 }

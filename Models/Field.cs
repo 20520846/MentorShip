@@ -1,10 +1,11 @@
+
 namespace MentorShip.Models;
 using System;
 using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-public class Skill
+public class Field
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
@@ -13,14 +14,6 @@ public class Skill
 
     [JsonPropertyName("name")]
     public string? Name { get; set; }
-
-    [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-    [JsonPropertyName("createdAt")]
-       public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-    [BsonRepresentation(BsonType.ObjectId)]
-    [JsonPropertyName("fieldId")]
-    public string? FieldId { get; set; }
 
     [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
     [JsonPropertyName("deletedAt")]

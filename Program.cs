@@ -45,23 +45,22 @@ builder.Host.UseNServiceBus(context =>
 
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<MongoDBService>();
-builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<ApplicationService>();
 builder.Services.AddSingleton<CourseService>();
 builder.Services.AddSingleton<SkillService>();
 builder.Services.AddSingleton<MentorService>();
-builder.Services.AddSingleton<PaymentService>();
 builder.Services.AddSingleton<MenteeService>();
 builder.Services.AddSingleton<PaymentService>();
+
 builder.Services.AddSingleton<IConfiguration>(configuration);
-// Add services to the container.
+
+builder.Services.AddSingleton<FieldService>();
 
 //builder.Services.AddControllers().AddJsonOptions(options =>
 //{
 //    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 //});
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

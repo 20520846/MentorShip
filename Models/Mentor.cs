@@ -4,12 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-public enum ApprovalStatus
-{
-    Pending,
-    Approved,
-    Rejected
-}
+
 
 public class Mentor
 {
@@ -18,23 +13,36 @@ public class Mentor
     [JsonPropertyName("id")]
     public string? Id { get; set; }
 
-    // [JsonPropertyName("email")]
-    // public string Email { get; set; } = null;
-
-    // [JsonPropertyName("phoneNumber")]
-    // public string PhoneNumber { get; set; } = null;
+    [BsonRepresentation(BsonType.ObjectId)]
+    [JsonPropertyName("applicationId")]
+    public string? ApplicationId { get; set; }
 
     [JsonPropertyName("jobTitle")]
-    public string JobTitle { get; set; } = null;
+    public string JobTitle { get; set; } = string.Empty;
+
+    [JsonPropertyName("avatar")]
+    public string Avatar { get; set; } = string.Empty;
+
+    [JsonPropertyName("email")]
+    public string Email { get; set; } = string.Empty;
+
+    [JsonPropertyName("firstName")]
+    public string FirstName { get; set; } = string.Empty;
+
+    [JsonPropertyName("lastName")]
+    public string LastName { get; set; } = string.Empty;
 
     [JsonPropertyName("company")]
-    public string Company { get; set; } = null;
+    public string Company { get; set; } = string.Empty;
 
-    [JsonPropertyName("skills")]
-    public string[] Skills { get; set; } = Array.Empty<string>();
+    [JsonPropertyName("location")]
+    public string Location { get; set; } = string.Empty;
 
-    [JsonPropertyName("category")]
-    public string Category { get; set; } = string.Empty;
+    [JsonPropertyName("phoneNumber")]
+    public string PhoneNumber { get; set; } = string.Empty;
+
+    [JsonPropertyName("dateOfBirth")]
+    public DateTime? DateOfBirth { get; set; } = null;
 
     [JsonPropertyName("bio")]
     public string Bio { get; set; } = string.Empty;
@@ -45,6 +53,16 @@ public class Mentor
     [JsonPropertyName("twitter")]
     public string Twitter { get; set; } = string.Empty;
 
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    [JsonPropertyName("price")]
+    public int? Price { get; set; } = 0;
 
+    [BsonRepresentation(BsonType.ObjectId)]
+    [JsonPropertyName("skillIds")]
+    public List<string> SkillIds { get; set; } = new List<string>();
+                
+    [JsonPropertyName("imageUrls")]
+    public List<string> ImageUrls { get; set; } = new List<string>();
+                        
+    public DateTime CreatedAt { get; set; } = DateTime.Now; 
+        
 }
