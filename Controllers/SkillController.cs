@@ -36,13 +36,14 @@ namespace MentorShip.Controllers
             var skills = await _skillService.GetAllSkills();
             return Ok(new { data = skills });
         }
-
-        [HttpGet("getSkillById/{id}")]
-        public async Task<IActionResult> GetSkillById(string id)
+        
+        [HttpGet("getSkillsByFieldId/{fieldId}")]
+        public async Task<IActionResult> GetSkillsByFieldId(string fieldId)
         {
-            var skill = await _skillService.GetSkillById(id);
-            return Ok(new { data = skill });
+            var skills = await _skillService.GetSkillsByFieldId(fieldId);
+            return Ok(new { data = skills });
         }
+
 
         [HttpDelete("deleteSkill/{id}")]
         public async Task<IActionResult> DeleteSkill(string id)

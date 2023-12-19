@@ -4,13 +4,12 @@ using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-public enum ApplicationStatus
+public enum ApprovalStatus
 {
     Pending,
     Approved,
     Rejected
 }
-
 public class Application
 {
     [BsonId]
@@ -18,18 +17,18 @@ public class Application
     [JsonPropertyName("id")]
     public string? Id { get; set; }
 
-    [BsonRepresentation(BsonType.ObjectId)]
-    [JsonPropertyName("mentorId")]
-    public string? MentorId { get; set; }
-
-    [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-    [JsonPropertyName("createdAt")]
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-    public ApplicationStatus Status { get; set; } = ApplicationStatus.Pending;
-    [JsonPropertyName("imageUrls")]
-    public List<string> ImageUrls { get; set; } = new List<string>();
-
-    [JsonPropertyName("description")]
-    public string? Description { get; set; } = null;
+    [JsonPropertyName("status")]
+    public ApprovalStatus Status { get; set; } = ApprovalStatus.Pending;
+            
+    [JsonPropertyName("applicationDate")]
+    public DateTime ApplicationDate { get; set; } = DateTime.Now;
+        
+    [JsonPropertyName("mentorProfile")]
+    public Mentor MentorProfile { get; set; } = new Mentor();
+        
+    [JsonPropertyName("reasonToBeMentor")]
+    public string ReasonToBeMentor { get; set; } = string.Empty;
+        
+    [JsonPropertyName("greatestAchievement")]
+    public string GreatestAchievement { get; set; } = string.Empty;
 }

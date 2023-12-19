@@ -31,7 +31,7 @@ namespace MentorShip.Controllers
         }
 
         [HttpPut("updateApplicationStatus/{id}")]
-        public async Task<IActionResult> UpdateApplicationStatus(string id, [FromBody] ApplicationStatus status)
+        public async Task<IActionResult> UpdateApplicationStatus(string id, [FromBody] ApprovalStatus status)
         {
             var application = await _applicationService.UpdateApplicationStatus(id, status);
             return Ok(new { data = application });

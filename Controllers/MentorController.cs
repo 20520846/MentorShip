@@ -27,8 +27,6 @@ namespace MentorShip.Controllers
             var mentors = await _mentorService.GetAllMentors();
             return Ok(new { data = mentors });
         }
-
-
         [HttpPost("create")]
         public async Task<IActionResult> Post([FromBody] Mentor mentor)
         {
@@ -42,5 +40,12 @@ namespace MentorShip.Controllers
                 return BadRequest(new { error = ex.Message });
             }
         }
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string? name, [FromQuery] string? skillId, [FromQuery] int? minPrice, [FromQuery] int? maxPrice)
+        {
+            var mentors = await _mentorService.SearchMentor(name, skillId, minPrice, maxPrice);
+            return Ok(new { data = mentors });
+        }
+
     }
 }

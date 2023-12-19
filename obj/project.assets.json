@@ -74,6 +74,9 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
         "type": "package",
@@ -2985,11 +2988,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
+      "projectUniqueName": "f:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
       "projectName": "MentorShip",
-      "projectPath": "F:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
+      "projectPath": "f:\\SourceCode\\dotnet\\MentorShip\\MentorShip.csproj",
       "packagesPath": "C:\\Users\\NITRO 5 PC\\.nuget\\packages\\",
-      "outputPath": "F:\\SourceCode\\dotnet\\MentorShip\\obj\\",
+      "outputPath": "f:\\SourceCode\\dotnet\\MentorShip\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
