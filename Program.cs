@@ -62,13 +62,20 @@ builder.Services.AddSingleton<FieldService>();
 //});
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
     builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
 }));
 
+builder.Services.AddCors(options => 
+    {
+        options.AddPolicy("AllowSwaggerUI", builder => {
+            builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        });
+    }
+);
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -84,15 +91,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwaggerUI();
     // Generate Swagger YAML file
-    app.UseSwaggerUI(x => { x.SwaggerEndpoint("swagger/v1/swagger.yaml", "My API"); });
+    
+    app.UseSwaggerUI(x => { x.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1"); });
 }
 
 
 app.UseHttpsRedirection();
 
 app.UseCors("corsapp");
+app.UseCors("AllowSwaggerUI");
 
 app.UseAuthorization();
 
