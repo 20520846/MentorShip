@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - main
-      - gh-pages
       - deploy
+      - gh-pages
 jobs:
   generate-openapi-spec:
     runs-on: windows-latest
