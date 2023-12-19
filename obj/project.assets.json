@@ -74,9 +74,6 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       },
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
         "type": "package",
