@@ -51,6 +51,9 @@ builder.Services.AddSingleton<SkillService>();
 builder.Services.AddSingleton<MentorService>();
 builder.Services.AddSingleton<MenteeService>();
 builder.Services.AddSingleton<PaymentService>();
+builder.Services.AddSingleton<CommentService>();
+builder.Services.AddSingleton<PlanService>();
+
 
 builder.Services.AddSingleton<IConfiguration>(configuration);
 
@@ -69,9 +72,10 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
 }));
 
-builder.Services.AddCors(options => 
+builder.Services.AddCors(options =>
     {
-        options.AddPolicy("AllowSwaggerUI", builder => {
+        options.AddPolicy("AllowSwaggerUI", builder =>
+        {
             builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
         });
     }
@@ -93,7 +97,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     //app.UseSwaggerUI();
     // Generate Swagger YAML file
-    
+
     app.UseSwaggerUI(x => { x.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1"); });
 }
 
