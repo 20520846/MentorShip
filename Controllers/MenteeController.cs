@@ -35,5 +35,27 @@ namespace MentorShip.Controllers
                 return BadRequest(new { error = ex.Message });
             }
         }
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Put(string id, [FromBody] Mentee mentee)
+        {
+            try
+            {
+                var existingMentee = await _menteeService.GetMenteeById(id);
+                if (existingMentee == null)
+                {
+                    return NotFound();
+                }
+
+                mentee.Id = existingMentee.Id; // Ensure the ID is not changed
+                await _menteeService.UpdateMentee(mentee);
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
     }
 }

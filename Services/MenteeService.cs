@@ -25,6 +25,10 @@ namespace MentorShip.Services
             await _menteeCollection.InsertOneAsync(mentee);
             return mentee;
         }
+        public async Task UpdateMentee(Mentee mentee)
+        {
+            await _menteeCollection.ReplaceOneAsync(m => m.Id == mentee.Id, mentee);
+        }
 
     }
 }

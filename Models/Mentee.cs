@@ -13,25 +13,26 @@ public class Mentee
         JsonPropertyName("id")
     ]
     public string? Id { get; set; }
-    [JsonPropertyName("createdAt")]
 
+    [JsonPropertyName("createdAt")]
     public DateTime CreatedAt { get; set; } = DateTime.Now;
+
     [JsonPropertyName("phoneNumber")]
     public string? PhoneNumber { get; set; } = string.Empty;
 
-    [JsonPropertyName("fullName")]
-    public string? FullName { get; set; } = string.Empty;
+    [JsonPropertyName("email")]
+    public string? Email { get; set; } = string.Empty;
+
+    [JsonPropertyName("avatar")]
+    public string Avatar { get; set; } = string.Empty;
+
+    [JsonPropertyName("firstName")]
+    public string FirstName { get; set; } = string.Empty;
+
+    [JsonPropertyName("lastName")]
+    public string LastName { get; set; } = string.Empty;
 
     [JsonPropertyName("dateOfBirth")]
     public DateTime? DateOfBirth { get; set; } = null;
-
-    [JsonPropertyName("price")]
-    public decimal? Price { get; set; } = 0;
-
-    [JsonPropertyName("ratingStar")]
-    public double? RatingStar { get; set; } = 0;
-
-    [JsonPropertyName("introduction")]
-    public string? Introduction { get; set; } = string.Empty;
 
 }
