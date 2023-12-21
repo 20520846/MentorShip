@@ -63,6 +63,13 @@ public class Mentor
     [JsonPropertyName("imageUrls")]
     public List<string> ImageUrls { get; set; } = new List<string>();
                         
-    public DateTime CreatedAt { get; set; } = DateTime.Now; 
-        
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+
+    [JsonPropertyName("ratingStar")]
+    public double? RatingStar { get; set; } = 0;
+
+    [JsonPropertyName("introduction")]
+    public string? Introduction { get; set; } = string.Empty;
+
 }

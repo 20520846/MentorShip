@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using YamlDotNet.Serialization;
 
 using System.Text.Json.Serialization;
+using System.Reflection.Emit;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = new ConfigurationBuilder()
@@ -46,8 +47,10 @@ builder.Host.UseNServiceBus(context =>
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<MongoDBService>();
 builder.Services.AddSingleton<ApplicationService>();
+builder.Services.AddSingleton<MenteeApplicationService>();
 builder.Services.AddSingleton<CourseService>();
 builder.Services.AddSingleton<SkillService>();
+builder.Services.AddSingleton<FieldService>();
 builder.Services.AddSingleton<MentorService>();
 builder.Services.AddSingleton<MenteeService>();
 builder.Services.AddSingleton<PaymentService>();

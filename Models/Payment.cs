@@ -20,8 +20,8 @@ public class Payment
     [JsonPropertyName("menteeId")]
     public string MenteeId { get; set; } = null;
 
-    [JsonPropertyName("courseId")]
-    public string CourseId { get; set; } = null;
+    [JsonPropertyName("mentorId")]
+    public string ApplicationId  { get; set; } = null;
 
     [JsonPropertyName("price")]
     public decimal Price { get; set; } = 0;
