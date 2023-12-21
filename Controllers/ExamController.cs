@@ -31,8 +31,14 @@ namespace MentorShip.Controllers
             }
         }
 
-        [HttpGet("get/{mentorId}")]
-        public async Task<List<Exam>> Get(string mentorId)
+        [HttpGet("getByExamId/{id}")]
+        public async Task<Exam> GetByExamId(string id)
+        {
+            return await _examService.GetExamById(id);
+        }
+
+        [HttpGet("getByMentorId/{mentorId}")]
+        public async Task<List<Exam>> GetByMentorId(string mentorId)
         {
             return await _examService.GetExamByMentorId(mentorId);
         }
