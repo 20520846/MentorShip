@@ -53,6 +53,8 @@ builder.Services.AddSingleton<MenteeService>();
 builder.Services.AddSingleton<PaymentService>();
 builder.Services.AddSingleton<CommentService>();
 builder.Services.AddSingleton<PlanService>();
+builder.Services.AddSingleton<ExamService>();
+builder.Services.AddSingleton<QuestionService>();
 
 
 builder.Services.AddSingleton<IConfiguration>(configuration);
