@@ -591,6 +591,179 @@
         }
       }
     },
+    "/api/mentee/update/{id}": {
+      "put": {
+        "tags": [
+          "Mentee"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mentee"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mentee"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mentee"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/menteeApplication/getAllMenteeApplication": {
+      "get": {
+        "tags": [
+          "MenteeApplication"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/menteeApplication/getMenteeApplicationByMenteeId/{menteeId}": {
+      "get": {
+        "tags": [
+          "MenteeApplication"
+        ],
+        "parameters": [
+          {
+            "name": "menteeId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/menteeApplication/updateMenteeApplicationStatus/{id}": {
+      "put": {
+        "tags": [
+          "MenteeApplication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApprovalStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApprovalStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApprovalStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/menteeApplication/deleteMenteeApplication/{id}": {
+      "delete": {
+        "tags": [
+          "MenteeApplication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/menteeApplication/createMenteeApplication": {
+      "post": {
+        "tags": [
+          "MenteeApplication"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenteeApplicationModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenteeApplicationModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenteeApplicationModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/mentor/get/{id}": {
       "get": {
         "tags": [
@@ -1241,7 +1414,19 @@
             "type": "string",
             "nullable": true
           },
-          "fullName": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatar": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
             "type": "string",
             "nullable": true
           },
@@ -1249,18 +1434,56 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
-          },
-          "price": {
-            "type": "number",
-            "format": "double",
+          }
+        },
+        "additionalProperties": false
+      },
+      "MenteeApplicationModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
             "nullable": true
           },
-          "ratingStar": {
-            "type": "number",
-            "format": "double",
+          "mentorId": {
+            "type": "string",
             "nullable": true
           },
-          "introduction": {
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApprovalStatus"
+          },
+          "applicationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fee": {
+            "type": "number",
+            "format": "double"
+          },
+          "mentorResponse": {
+            "type": "string",
+            "nullable": true
+          },
+          "menteeProfile": {
+            "$ref": "#/components/schemas/Mentee"
+          },
+          "goal": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectation": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactTimes": {
             "type": "string",
             "nullable": true
           }
@@ -1349,6 +1572,15 @@
           "createdAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "ratingStar": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "introduction": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1374,7 +1606,7 @@
             "type": "string",
             "nullable": true
           },
-          "courseId": {
+          "mentorId": {
             "type": "string",
             "nullable": true
           },
