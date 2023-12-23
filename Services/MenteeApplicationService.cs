@@ -26,7 +26,6 @@ namespace MentorShip.Services
             return await _menteeApplicationCollection.Find(a => a.MenteeProfile.Id == menteeId).ToListAsync();
         }
 
-
         public async Task<MenteeApplicationModel> UpdateMenteeApplicationStatus(string id, ApprovalStatus status)
         {
             var filter = Builders<MenteeApplicationModel>.Filter.Eq(a => a.Id, id);
@@ -43,6 +42,11 @@ namespace MentorShip.Services
         {
             await _menteeApplicationCollection.InsertOneAsync(menteeApplication);
             return menteeApplication;
+        }
+
+        public async Task<List<MenteeApplicationModel>> GetMenteeApplicationByMentorId(string mentorId)
+        {
+            return await _menteeApplicationCollection.Find(a => a.MentorId == mentorId).ToListAsync();
         }
     }
 }

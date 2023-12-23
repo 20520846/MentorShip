@@ -6,7 +6,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 public enum NamePlan
 {
-    None,
+    // None,
     Lite,
     Standard,
     Pro
@@ -22,7 +22,7 @@ public class Plan
     public string MentorId { get; set; } = null;
 
     [JsonPropertyName("name")]
-    public NamePlan Name { get; set; } = NamePlan.None;
+    public NamePlan Name { get; set; } = NamePlan.Lite;
 
     [JsonPropertyName("callTimes")]
     public int CallTimes { get; set; } = 0;

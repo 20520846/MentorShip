@@ -34,5 +34,15 @@ namespace MentorShip.Services
             var plans = await _planCollection.Find(u => u.MentorId == id).ToListAsync();
             return plans;
         }
+
+        public async Task<Plan> UpdatePlanById(string id, Plan plan)
+        {
+            var updatePlan = await _planCollection.Find(u => u.Id == id).FirstOrDefaultAsync();
+            updatePlan.CallTimes = plan.CallTimes;
+            updatePlan.Price = plan.Price;
+            updatePlan.Description = plan.Description;
+            await _planCollection.ReplaceOneAsync(u => u.Id == id, updatePlan);
+            return updatePlan;
+        }
     }
 }

@@ -46,5 +46,24 @@ namespace MentorShip.Controllers
         {
             return await _planService.GetAllPlanByMentorId(id);
         }
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Put(string id, [FromBody] Plan plan)
+        {
+            try
+            {
+                var planData = await _planService.GetPlanById(id);
+                if (planData == null)
+                {
+                    return BadRequest(new { error = "Plan not found" });
+                }
+                await _planService.UpdatePlanById(id, plan);
+                return Ok(plan);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
     }
 }

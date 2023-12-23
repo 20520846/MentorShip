@@ -30,6 +30,13 @@ namespace MentorShip.Controllers
             return Ok(new { data = application });
         }
 
+        [HttpGet("getMenteeApplicationByMentorId/{mentorId}")]
+        public async Task<IActionResult> GetMenteeApplicationByMentorId(string mentorId)
+        {
+            var application = await _menteeApplicationService.GetMenteeApplicationByMentorId(mentorId);
+            return Ok(new { data = application });
+        }
+
         [HttpPut("updateMenteeApplicationStatus/{id}")]
         public async Task<IActionResult> UpdateMenteeApplicationStatus(string id, [FromBody] ApprovalStatus status)
         {
