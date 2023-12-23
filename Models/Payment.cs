@@ -21,7 +21,10 @@ public class Payment
     public string MenteeId { get; set; } = null;
 
     [JsonPropertyName("mentorId")]
-    public string ApplicationId  { get; set; } = null;
+    public string MentorId { get; set; } = null;
+
+    [JsonPropertyName("menteeApplicationId")]
+    public string MenteeApplicationId { get; set; } = null;
 
     [JsonPropertyName("price")]
     public decimal Price { get; set; } = 0;

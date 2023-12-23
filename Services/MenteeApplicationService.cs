@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using RabbitMQ.Client.Events;
 
 namespace MentorShip.Services
 {
@@ -21,6 +22,10 @@ namespace MentorShip.Services
             return await _menteeApplicationCollection.Find(a => true).ToListAsync();
         }
 
+        public async Task<MenteeApplicationModel> GetMenteeApplicationById(string id)
+        {
+            return await _menteeApplicationCollection.Find(a => a.Id == id).FirstOrDefaultAsync();
+        }
         public async Task<List<MenteeApplicationModel>> GetMenteeApplicationByMenteeId(string menteeId)
         {
             return await _menteeApplicationCollection.Find(a => a.MenteeProfile.Id == menteeId).ToListAsync();
@@ -47,6 +52,14 @@ namespace MentorShip.Services
         public async Task<List<MenteeApplicationModel>> GetMenteeApplicationByMentorId(string mentorId)
         {
             return await _menteeApplicationCollection.Find(a => a.MentorId == mentorId).ToListAsync();
+        }
+
+        public async Task<MenteeApplicationModel> UpdatePayStatus(string id, PaymentStatus status)
+        {
+            var menteeAppli = await _menteeApplicationCollection.Find(a => a.Id == id).FirstOrDefaultAsync();
+            menteeAppli.PayStatus = status;
+            await _menteeApplicationCollection.ReplaceOneAsync(a => a.Id == id, menteeAppli);
+            return menteeAppli;
         }
     }
 }

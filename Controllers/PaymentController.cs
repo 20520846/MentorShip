@@ -8,8 +8,8 @@ namespace MentorShip.Controllers
 {
     public class PaymentInfor
     {
-        public string UserId { get; set; }
-        public string CourseId { get; set; }
+        public string MenteeId { get; set; }
+        public string MenteeApplicattion { get; set; }
 
         public decimal Amount { get; set; }
         public string Description { get; set; }
@@ -22,13 +22,14 @@ namespace MentorShip.Controllers
         private readonly PaymentService _paymentService;
         private IMessageSession _messageSession;
         private readonly IConfiguration _configuration;
+        private readonly MenteeApplicationService _menteeApplicationService;
 
-        public PaymentController(PaymentService paymentService, IMessageSession messageSession, IConfiguration configuration)
+        public PaymentController(PaymentService paymentService, IMessageSession messageSession, IConfiguration configuration, MenteeApplicationService menteeApplicationService)
         {
             _paymentService = paymentService;
             _messageSession = messageSession;
             _configuration = configuration;
-
+            _menteeApplicationService = menteeApplicationService;
         }
 
         [HttpPost]
@@ -36,24 +37,34 @@ namespace MentorShip.Controllers
         {
             try
             {
-                var createdPayment = await _paymentService.CreatePayment(payment);
-                var message = new Message
+                var paymentCheck = await _paymentService.GetPaymentByMenteeApplicationId(payment.MenteeApplicationId);
+                if (paymentCheck != null)
                 {
-                    Type = "PAYMENT",
-                    Payload = new Payload
-                    {
-                        TransactionId = payment.Id,
-                        Title = "Giao dịch thành công",
-                        Message = "",
-                    },
-                    Meta = new Meta
-                    {
-                        Timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
-                    }
-                };
+                    return BadRequest(new { error = "Payment already exists" });
+                }
+                else
+                {
+                    var createdPayment = await _paymentService.CreatePayment(payment);
+                    await _menteeApplicationService.UpdatePayStatus(payment.MenteeApplicationId, payment.Status);
 
-                await _messageSession.Send(message).ConfigureAwait(false);
-                return Ok(new { data = createdPayment });
+                    var message = new Message
+                    {
+                        Type = "PAYMENT",
+                        Payload = new Payload
+                        {
+                            TransactionId = payment.Id,
+                            Title = "Giao dịch thành công",
+                            Message = "",
+                        },
+                        Meta = new Meta
+                        {
+                            Timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
+                        }
+                    };
+
+                    await _messageSession.Send(message).ConfigureAwait(false);
+                    return Ok(new { data = createdPayment });
+                }
             }
             catch (ArgumentException ex)
             {
@@ -98,7 +109,42 @@ namespace MentorShip.Controllers
             return Ok(new { data = payments });
         }
 
-        [HttpGet("/getRequestUrl")]
+        [HttpDelete("deletePayments/{menteeApplicationId}")]
+        public async Task<ActionResult> DeletePaymentsByMenteeApplicationId(string menteeApplicationId)
+        {
+            try
+            {
+                // Lấy danh sách các payment có cùng menteeApplicationId
+                var payments = await _paymentService.GetPaymentsByMenteeApplicationId(menteeApplicationId);
+
+                // Kiểm tra nếu có ít nhất 2 payment
+                if (payments.Count >= 2)
+                {
+                    // Sắp xếp danh sách theo một tiêu chí nào đó (ví dụ: theo ngày tạo)
+                    payments = payments.OrderBy(p => p.CreatedAt).ToList();
+
+                    // Chọn payment cần xóa (ví dụ: xóa payment có CreatedAt nhỏ nhất)
+                    var paymentToDelete = payments.First();
+
+                    // Gọi service để xóa payment
+                    await _paymentService.DeletePaymentById(paymentToDelete.Id);
+
+                    return Ok(new { message = "Payment deleted successfully" });
+                }
+                else
+                {
+                    return BadRequest(new { message = "Not enough payments to delete" });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi nếu có
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
+
+        [HttpPost("/getRequestUrl")]
         public async Task<IActionResult> GetRequesturl([FromBody] PaymentInfor payment)
         {
             try
@@ -123,13 +169,17 @@ namespace MentorShip.Controllers
                 vnpay.AddRequestData("vnp_Amount", (payment.Amount * 100).ToString());
                 vnpay.AddRequestData("vnp_OrderInfo", payment.Description);
                 vnpay.AddRequestData("vnp_OrderType", "billpayment");
-                vnpay.AddRequestData("vnp_ReturnUrl", "https://localhost:5008/swagger/index.html");
+                vnpay.AddRequestData("vnp_ReturnUrl", "http://localhost:5173/mentee/payment/ReturnUrl");
+                // Tạo URL động bằng cách sử dụng Url.Action
+                // var returnUrl = Url.Action("VnpReturnAction", "ControllerName", null, Request.Scheme);
+
+                // vnpay.AddRequestData("vnp_ReturnUrl", returnUrl);
                 vnpay.AddRequestData("vnp_CurrCode", vnpayConfig.CurrCode);
                 vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(
                     HttpContext
                 )); // Ensure Utils.GetIpAddress() is implemented
                 vnpay.AddRequestData("vnp_CreateDate", DateTime.Now.AddHours(7).ToString("yyyyMMddHHmmss"));
-                vnpay.AddRequestData("vnp_TxnRef", Guid.NewGuid().ToString());
+                vnpay.AddRequestData("vnp_TxnRef", payment.MenteeApplicattion);
                 vnpay.AddRequestData("vnp_Locale", vnpayConfig.Locale);
 
                 // Add other parameters as needed

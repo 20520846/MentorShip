@@ -23,6 +23,13 @@ namespace MentorShip.Controllers
             return Ok(new { data = applications });
         }
 
+        [HttpGet("getMenteeApplicationById/{id}")]
+        public async Task<IActionResult> GetMenteeApplicationById(string id)
+        {
+            var application = await _menteeApplicationService.GetMenteeApplicationById(id);
+            return Ok(new { data = application });
+        }
+
         [HttpGet("getMenteeApplicationByMenteeId/{menteeId}")]
         public async Task<IActionResult> GetMenteeApplicationByMenteeId(string menteeId)
         {

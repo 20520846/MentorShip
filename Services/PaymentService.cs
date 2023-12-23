@@ -31,5 +31,32 @@ namespace MentorShip.Services
         {
             return await _paymentCollection.Find(payment => payment.MenteeId == userId).ToListAsync();
         }
+
+        public async Task<Payment> GetPaymentById(string id)
+        {
+            return await _paymentCollection.Find(payment => payment.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<Payment> GetPaymentByMenteeApplicationId(string menteeApplicationId)
+        {
+            return await _paymentCollection.Find(payment => payment.MenteeApplicationId == menteeApplicationId).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Payment>> GetPaymentsByMentorId(string mentorId)
+        {
+            return await _paymentCollection.Find(payment => payment.MentorId == mentorId).ToListAsync();
+        }
+
+        public async Task<List<Payment>> GetPaymentsByMenteeApplicationId(string menteeApplicationId)
+        {
+            return await _paymentCollection.Find(payment => payment.MenteeApplicationId == menteeApplicationId).ToListAsync();
+        }
+
+        public async Task<Payment> DeletePaymentById(string id)
+        {
+            return await _paymentCollection.FindOneAndDeleteAsync(payment => payment.Id == id);
+        }
+
+
     }
 }
