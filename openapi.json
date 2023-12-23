@@ -1013,6 +1013,29 @@
         }
       }
     },
+    "/menteeApplication/getMenteeApplicationByMentorId/{mentorId}": {
+      "get": {
+        "tags": [
+          "MenteeApplication"
+        ],
+        "parameters": [
+          {
+            "name": "mentorId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/menteeApplication/updateMenteeApplicationStatus/{id}": {
       "put": {
         "tags": [
@@ -1693,6 +1716,48 @@
         }
       }
     },
+    "/api/plan/update/{id}": {
+      "put": {
+        "tags": [
+          "Plan"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Plan"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Plan"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Plan"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/question/create": {
       "post": {
         "tags": [
@@ -2295,8 +2360,7 @@
         "enum": [
           0,
           1,
-          2,
-          3
+          2
         ],
         "type": "integer",
         "format": "int32"
