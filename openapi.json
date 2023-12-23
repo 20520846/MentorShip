@@ -990,6 +990,29 @@
         }
       }
     },
+    "/menteeApplication/getMenteeApplicationById/{id}": {
+      "get": {
+        "tags": [
+          "MenteeApplication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/menteeApplication/getMenteeApplicationByMenteeId/{menteeId}": {
       "get": {
         "tags": [
@@ -1565,8 +1588,31 @@
         }
       }
     },
+    "/payment/deletePayments/{menteeApplicationId}": {
+      "delete": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "menteeApplicationId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/getRequestUrl": {
-      "get": {
+      "post": {
         "tags": [
           "Payment"
         ],
@@ -2197,6 +2243,13 @@
           "status": {
             "$ref": "#/components/schemas/ApprovalStatus"
           },
+          "paymentStatus": {
+            "$ref": "#/components/schemas/PaymentStatus"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
           "applicationDate": {
             "type": "string",
             "format": "date-time"
@@ -2224,7 +2277,7 @@
             "type": "string",
             "nullable": true
           },
-          "contactTimes": {
+          "callTimes": {
             "type": "string",
             "nullable": true
           }
@@ -2380,6 +2433,10 @@
             "type": "string",
             "nullable": true
           },
+          "menteeApplicationId": {
+            "type": "string",
+            "nullable": true
+          },
           "price": {
             "type": "number",
             "format": "double"
@@ -2397,11 +2454,11 @@
       "PaymentInfor": {
         "type": "object",
         "properties": {
-          "userId": {
+          "menteeId": {
             "type": "string",
             "nullable": true
           },
-          "courseId": {
+          "menteeApplicattion": {
             "type": "string",
             "nullable": true
           },
