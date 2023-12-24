@@ -1455,6 +1455,71 @@
         }
       }
     },
+    "/api/mentor/update/{id}": {
+      "put": {
+        "tags": [
+          "Mentor"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mentor"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mentor"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mentor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/mentor/getMentorSkills/{mentorId}": {
+      "get": {
+        "tags": [
+          "Mentor"
+        ],
+        "parameters": [
+          {
+            "name": "mentorId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/payment": {
       "post": {
         "tags": [
@@ -2045,11 +2110,11 @@
           "mentorProfile": {
             "$ref": "#/components/schemas/Mentor"
           },
-          "reasonToBeMentor": {
+          "reason": {
             "type": "string",
             "nullable": true
           },
-          "greatestAchievement": {
+          "achievement": {
             "type": "string",
             "nullable": true
           }
@@ -2132,6 +2197,43 @@
           "deletedAt": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "weeks": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isBusy": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -2236,6 +2338,9 @@
             "type": "string",
             "nullable": true
           },
+          "plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
           "reason": {
             "type": "string",
             "nullable": true
@@ -2279,6 +2384,17 @@
           },
           "callTimes": {
             "type": "string",
+            "nullable": true
+          },
+          "contactTimes": {
+            "type": "string",
+            "nullable": true
+          },
+          "learningTime": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            },
             "nullable": true
           }
         },
@@ -2345,14 +2461,6 @@
             "type": "string",
             "nullable": true
           },
-          "company": {
-            "type": "string",
-            "nullable": true
-          },
-          "location": {
-            "type": "string",
-            "nullable": true
-          },
           "phoneNumber": {
             "type": "string",
             "nullable": true
@@ -2372,11 +2480,6 @@
           },
           "twitter": {
             "type": "string",
-            "nullable": true
-          },
-          "price": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           },
           "skillIds": {
@@ -2496,6 +2599,10 @@
             "$ref": "#/components/schemas/NamePlan"
           },
           "callTimes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "weeks": {
             "type": "integer",
             "format": "int32"
           },
