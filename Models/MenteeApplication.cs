@@ -10,13 +10,16 @@ public class MenteeApplicationModel
     [BsonRepresentation(BsonType.ObjectId)]
     [JsonPropertyName("id")]
     public string? Id { get; set; }
-
+                                
     [JsonPropertyName("mentorId")]
     public string MentorId { get; set; }
 
+    [JsonPropertyName("plan")]
+    public Plan plan { get; set; }
+
     [JsonPropertyName("reason")]
     public string? Reason { get; set; } = string.Empty;
-
+        
     [JsonPropertyName("status")]
     public ApprovalStatus Status { get; set; } = ApprovalStatus.Pending;
 
@@ -46,6 +49,13 @@ public class MenteeApplicationModel
     public string? PersonalDescription { get; set; } = string.Empty;
     [JsonPropertyName("expectation")]
     public string? Expectation { get; set; } = string.Empty;
+<<<<<<< HEAD
     [JsonPropertyName("callTimes")]
     public string? CallTimes { get; set; } = string.Empty;
+=======
+    [JsonPropertyName("contactTimes")]
+    public string? ContactTimes { get; set; } = string.Empty;
+    [JsonPropertyName("learningTime")]
+    public List<Event> LearningTime { get; set; } = new List<Event>();
+>>>>>>> 62a3771 (update mentee application)
 }

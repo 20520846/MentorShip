@@ -27,6 +27,9 @@ public class Plan
     [JsonPropertyName("callTimes")]
     public int CallTimes { get; set; } = 0;
 
+    [JsonPropertyName("weeks")]
+    public int Weeks { get; set; } = 0;
+
     [JsonPropertyName("price")]
     public decimal Price { get; set; } = 0;
 

@@ -35,11 +35,12 @@ namespace MentorShip.Services
             var update = Builders<Application>.Update.Set(a => a.Status, status);
             var application = await _applicationCollection.FindOneAndUpdateAsync(filter, update);
 
-            // If the application is approved, register the mentor
-            if (status == ApprovalStatus.Approved)
-            {
-                await _mentorCollection.InsertOneAsync(application.MentorProfile);
-            }
+            //// If the application is approved, register the mentor
+            //if (status == ApprovalStatus.Approved)
+            //{                               
+            //    application.MentorProfile.ApplicationId = application.Id;
+            //    await _mentorCollection.InsertOneAsync(application.MentorProfile);
+            //}
 
             return application;
         }

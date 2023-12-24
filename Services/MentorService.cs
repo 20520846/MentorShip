@@ -9,11 +9,13 @@ namespace MentorShip.Services
     public class MentorService : MongoDBService
     {
         private readonly IMongoCollection<Mentor> _mentorCollection;
-        public MentorService(IOptions<MongoDBSettings> mongoDBSettings) : base(mongoDBSettings)
+        private readonly SkillService _skillService;
+
+        public MentorService(IOptions<MongoDBSettings> mongoDBSettings, SkillService skillService) : base(mongoDBSettings)
         {
             _mentorCollection = database.GetCollection<Mentor>("mentors");
+            _skillService = skillService; 
         }
-
         public async Task<Mentor> GetMentorById(string id)
         {
             var mentor = await _mentorCollection.Find(u => u.Id == id).FirstOrDefaultAsync();
@@ -44,20 +46,45 @@ namespace MentorShip.Services
                 var skillFilter = builder.Where(m => m.SkillIds.Contains(skillId));
                 filter = builder.And(filter, skillFilter);
             }
-            if (minPrice.HasValue)
-            {
-                var minPriceFilter = builder.Gte(m => m.Price, minPrice.Value);
-                filter = builder.And(filter, minPriceFilter);
-            }
-            if (maxPrice.HasValue)
-            {
-                var maxPriceFilter = builder.Lte(m => m.Price, maxPrice.Value);
-                filter = builder.And(filter, maxPriceFilter);
-            }
+            //if (minPrice.HasValue)
+            //{
+            //    var minPriceFilter = builder.Gte(m => m.Price, minPrice.Value);
+            //    filter = builder.And(filter, minPriceFilter);
+            //}
+            //if (maxPrice.HasValue)
+            //{
+            //    var maxPriceFilter = builder.Lte(m => m.Price, maxPrice.Value);
+            //    filter = builder.And(filter, maxPriceFilter);
+            //}
 
             return await _mentorCollection.Find(filter).ToListAsync();
         }
+        public async Task<Mentor> UpdateMentor(Mentor mentor)
+        {
+            await _mentorCollection.ReplaceOneAsync(m => m.Id == mentor.Id, mentor);
+            return mentor;
+        }
+        public async Task<List<Skill>> GetSkillsByMentorId(string mentorId)
+        {
+            var mentor = await _mentorCollection.Find(m => m.Id == mentorId).FirstOrDefaultAsync();
+            if (mentor == null)
+            {
+                throw new Exception("Mentor not found");
+            }
 
+            var skillIds = mentor.SkillIds;
+            var skills = new List<Skill>();
 
+            foreach (var skillId in skillIds)
+            {
+                var skill = await _skillService.GetSkillById(skillId);
+                if (skill != null)
+                {
+                    skills.Add(skill);
+                }
+            }
+
+            return skills;
+        }
     }
 }

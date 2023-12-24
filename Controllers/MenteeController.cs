@@ -47,15 +47,18 @@ namespace MentorShip.Controllers
                 }
 
                 mentee.Id = existingMentee.Id; // Ensure the ID is not changed
-                await _menteeService.UpdateMentee(mentee);
+                var updatedMentee = await _menteeService.UpdateMentee(mentee);
+              
 
-                return NoContent();
+                return Ok(updatedMentee); // Return the updated mentor
+               
             }
             catch (Exception ex)
             {
                 return BadRequest(new { error = ex.Message });
             }
         }
+       
 
     }
 }

@@ -32,12 +32,6 @@ public class Mentor
     [JsonPropertyName("lastName")]
     public string LastName { get; set; } = string.Empty;
 
-    [JsonPropertyName("company")]
-    public string Company { get; set; } = string.Empty;
-
-    [JsonPropertyName("location")]
-    public string Location { get; set; } = string.Empty;
-
     [JsonPropertyName("phoneNumber")]
     public string PhoneNumber { get; set; } = string.Empty;
 
@@ -53,9 +47,6 @@ public class Mentor
     [JsonPropertyName("twitter")]
     public string Twitter { get; set; } = string.Empty;
 
-    [JsonPropertyName("price")]
-    public int? Price { get; set; } = 0;
-
     [BsonRepresentation(BsonType.ObjectId)]
     [JsonPropertyName("skillIds")]
     public List<string> SkillIds { get; set; } = new List<string>();
@@ -64,7 +55,6 @@ public class Mentor
     public List<string> ImageUrls { get; set; } = new List<string>();
                         
     public DateTime CreatedAt { get; set; } = DateTime.Now;
-
 
     [JsonPropertyName("ratingStar")]
     public double? RatingStar { get; set; } = 0;

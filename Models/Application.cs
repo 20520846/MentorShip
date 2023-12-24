@@ -26,9 +26,9 @@ public class Application
     [JsonPropertyName("mentorProfile")]
     public Mentor MentorProfile { get; set; } = new Mentor();
         
-    [JsonPropertyName("reasonToBeMentor")]
-    public string ReasonToBeMentor { get; set; } = string.Empty;
+    [JsonPropertyName("reason")]
+    public string Reason { get; set; } = string.Empty;
         
-    [JsonPropertyName("greatestAchievement")]
-    public string GreatestAchievement { get; set; } = string.Empty;
+    [JsonPropertyName("achievement")]
+    public string Achievement { get; set; } = string.Empty;
 }

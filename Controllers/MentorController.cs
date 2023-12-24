@@ -33,7 +33,7 @@ namespace MentorShip.Controllers
             try
             {
                 await _mentorService.RegisterMentor(mentor);
-                return CreatedAtAction(nameof(Get), new { id = mentor.Id }, mentor);
+                return Ok(new { data = mentor });
             }
             catch (Exception ex)
             {
@@ -46,6 +46,39 @@ namespace MentorShip.Controllers
             var mentors = await _mentorService.SearchMentor(name, skillId, minPrice, maxPrice);
             return Ok(new { data = mentors });
         }
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Put(string id, [FromBody] Mentor mentor)
+        {
+            try
+            {
+                var existingMentor = await _mentorService.GetMentorById(id);
+                if (existingMentor == null)
+                {
+                    return NotFound();
+                }
 
+                mentor.Id = existingMentor.Id; // Ensure the ID is not changed
+                var updatedMentor = await _mentorService.UpdateMentor(mentor);
+
+                return Ok(updatedMentor); // Return the updated mentor
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+        [HttpGet("getMentorSkills/{mentorId}")]
+        public async Task<IActionResult> GetMentorSkills(string mentorId)
+        {
+            try
+            {
+                var skills = await _mentorService.GetSkillsByMentorId(mentorId);
+                return Ok(new { data = skills });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
     }
 }
