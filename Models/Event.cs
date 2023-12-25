@@ -12,13 +12,11 @@ public class Event
     [JsonPropertyName("id")]
     public string? Id { get; set; }
 
-    [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
     [JsonPropertyName("start")]
-    public DateTime? Start { get; set; }
+    public long? Start { get; set; }
 
-    [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
     [JsonPropertyName("end")]
-    public DateTime? End { get; set; }
+    public long? End { get; set; }
 
     [JsonPropertyName("weeks")]
     public int? Weeks { get; set; }

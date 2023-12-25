@@ -52,6 +52,7 @@ builder.Services.AddSingleton<CourseService>();
 builder.Services.AddSingleton<FieldService>();
 builder.Services.AddSingleton<SkillService>();
 builder.Services.AddSingleton<MentorService>();
+builder.Services.AddSingleton<LearningProgressService>();
 builder.Services.AddSingleton<MenteeService>();
 builder.Services.AddSingleton<PaymentService>();
 builder.Services.AddSingleton<CommentService>();

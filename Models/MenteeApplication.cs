@@ -15,7 +15,7 @@ public class MenteeApplicationModel
     public string MentorId { get; set; }
 
     [JsonPropertyName("plan")]
-    public Plan plan { get; set; }
+    public Plan Plan { get; set; }
 
     [JsonPropertyName("reason")]
     public string? Reason { get; set; } = string.Empty;
@@ -49,10 +49,10 @@ public class MenteeApplicationModel
     public string? PersonalDescription { get; set; } = string.Empty;
     [JsonPropertyName("expectation")]
     public string? Expectation { get; set; } = string.Empty;
-    [JsonPropertyName("callTimes")]
-    public string? CallTimes { get; set; } = string.Empty;
     [JsonPropertyName("contactTimes")]
     public string? ContactTimes { get; set; } = string.Empty;
     [JsonPropertyName("learningTime")]
     public List<Event> LearningTime { get; set; } = new List<Event>();
+    [JsonPropertyName("isPaid")]
+    public Boolean? IsPaid { get; set; } = false;
 }

@@ -10,10 +10,12 @@ namespace MentorShip.Controllers
     public class MenteeApplicationController : ControllerBase
     {
         private readonly MenteeApplicationService _menteeApplicationService;
+        private readonly LearningProgressService _learningProgressService;
 
-        public MenteeApplicationController(MenteeApplicationService menteeApplicationService)
+        public MenteeApplicationController(MenteeApplicationService menteeApplicationService, LearningProgressService learningProgressService)
         {
             _menteeApplicationService = menteeApplicationService;
+            _learningProgressService = learningProgressService;
         }
 
         [HttpGet("getAllMenteeApplication")]
@@ -71,5 +73,53 @@ namespace MentorShip.Controllers
                 return BadRequest(new { error = ex.Message });
             }
         }
+
+        [HttpPost("checkRegistration")]
+        public async Task<IActionResult> CheckMenteeRegistration([FromBody] MenteeMentorIds ids)
+        {
+            var menteeApplication = await _menteeApplicationService.GetMenteeApplicationByMenteeIdAndMentorId(ids.MenteeId, ids.MentorId);
+            if (menteeApplication == null)
+            {
+                return Ok(new { CanProceed = true });
+            }
+
+            var status = menteeApplication.Status;
+
+            if (status == ApprovalStatus.Rejected)
+            {
+                return Ok(new { CanProceed = true });
+            }
+            else if (status == ApprovalStatus.Pending)
+            {
+                return Ok(new { CanProceed = false });
+            }
+            else // status == ApprovalStatus.Approved
+            {
+                var learningProgress = await _learningProgressService.GetLearningProgressByApplicationId(menteeApplication.Id);
+                if (learningProgress == null)
+                {
+                    return Ok(new { CanProceed = false });
+                }
+
+                var StartDate = learningProgress.StartDate;
+                var weeks = menteeApplication.Plan.Weeks;
+                var expiryDate = StartDate.AddDays(weeks * 7);
+
+                if (DateTime.Now > expiryDate)
+                {
+                    return Ok(new { CanProceed = true });
+                }
+                else
+                {
+                    return Ok(new { CanProceed = false });
+                }
+            }
+        }
+
     }
+}
+public class MenteeMentorIds
+{
+    public string MenteeId { get; set; }
+    public string MentorId { get; set; }
 }

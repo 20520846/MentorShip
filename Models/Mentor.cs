@@ -62,4 +62,6 @@ public class Mentor
     [JsonPropertyName("introduction")]
     public string? Introduction { get; set; } = string.Empty;
 
+    [JsonPropertyName("isUnavailable")]
+    public bool? IsUnavailable { get; set; } = false;
 }
