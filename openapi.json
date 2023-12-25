@@ -865,6 +865,125 @@
         }
       }
     },
+    "/learningProgress/createLearningProgress": {
+      "post": {
+        "tags": [
+          "LearningProgress"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenteeApplicationModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenteeApplicationModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenteeApplicationModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/learningProgress/updateLearningProgress/{id}": {
+      "put": {
+        "tags": [
+          "LearningProgress"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LearningProgress"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LearningProgress"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LearningProgress"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/learningProgress/getLearningProgressByMenteeId/{menteeId}": {
+      "get": {
+        "tags": [
+          "LearningProgress"
+        ],
+        "parameters": [
+          {
+            "name": "menteeId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/learningProgress/getLearningProgressByMentorId/{mentorId}": {
+      "get": {
+        "tags": [
+          "LearningProgress"
+        ],
+        "parameters": [
+          {
+            "name": "mentorId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/mentee/get/{id}": {
       "get": {
         "tags": [
@@ -1144,6 +1263,37 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/MenteeApplicationModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/menteeApplication/checkRegistration": {
+      "post": {
+        "tags": [
+          "MenteeApplication"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenteeMentorIds"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenteeMentorIds"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenteeMentorIds"
               }
             }
           }
@@ -2210,13 +2360,13 @@
             "nullable": true
           },
           "start": {
-            "type": "string",
-            "format": "date-time",
+            "type": "integer",
+            "format": "int64",
             "nullable": true
           },
           "end": {
-            "type": "string",
-            "format": "date-time",
+            "type": "integer",
+            "format": "int64",
             "nullable": true
           },
           "weeks": {
@@ -2284,6 +2434,44 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LearningProgress": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "mentorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "menteeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "callTimesLeft": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "additionalCallTimes": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2382,10 +2570,6 @@
             "type": "string",
             "nullable": true
           },
-          "callTimes": {
-            "type": "string",
-            "nullable": true
-          },
           "contactTimes": {
             "type": "string",
             "nullable": true
@@ -2395,6 +2579,10 @@
             "items": {
               "$ref": "#/components/schemas/Event"
             },
+            "nullable": true
+          },
+          "isPaid": {
+            "type": "boolean",
             "nullable": true
           }
         },
@@ -2426,6 +2614,20 @@
           "createdAt": {
             "type": "string",
             "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MenteeMentorIds": {
+        "type": "object",
+        "properties": {
+          "menteeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "mentorId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2507,6 +2709,10 @@
           },
           "introduction": {
             "type": "string",
+            "nullable": true
+          },
+          "isUnavailable": {
+            "type": "boolean",
             "nullable": true
           }
         },
