@@ -33,9 +33,14 @@ namespace MentorShip.Services
 
         public async Task<MenteeApplicationModel> UpdateMenteeApplicationStatus(string id, ApprovalStatus status)
         {
-            var filter = Builders<MenteeApplicationModel>.Filter.Eq(a => a.Id, id);
-            var update = Builders<MenteeApplicationModel>.Update.Set(a => a.Status, status);
-            return await _menteeApplicationCollection.FindOneAndUpdateAsync(filter, update);
+            var menteeAppli = await _menteeApplicationCollection.Find(a => a.Id == id).FirstOrDefaultAsync();
+            menteeAppli.Status = status;
+            if (status == ApprovalStatus.Approved)
+            {
+                menteeAppli.ApprovedDate = DateTime.Now;
+            }
+            await _menteeApplicationCollection.ReplaceOneAsync(a => a.Id == id, menteeAppli);
+            return menteeAppli;
         }
 
         public async Task DeleteMenteeApplication(string id)
@@ -58,6 +63,15 @@ namespace MentorShip.Services
         {
             var menteeAppli = await _menteeApplicationCollection.Find(a => a.Id == id).FirstOrDefaultAsync();
             menteeAppli.PayStatus = status;
+            if (status == PaymentStatus.Success)
+            {
+                menteeAppli.IsPaid = true;
+                menteeAppli.StartDate = System.DateTime.Now;
+            }
+            else
+            {
+                menteeAppli.IsPaid = false;
+            }
             await _menteeApplicationCollection.ReplaceOneAsync(a => a.Id == id, menteeAppli);
             return menteeAppli;
         }

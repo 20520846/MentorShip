@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
+using System.Diagnostics.Contracts;
 
 public class MenteeApplicationModel
 {
@@ -10,7 +11,7 @@ public class MenteeApplicationModel
     [BsonRepresentation(BsonType.ObjectId)]
     [JsonPropertyName("id")]
     public string? Id { get; set; }
-                                
+
     [JsonPropertyName("mentorId")]
     public string MentorId { get; set; }
 
@@ -19,7 +20,7 @@ public class MenteeApplicationModel
 
     [JsonPropertyName("reason")]
     public string? Reason { get; set; } = string.Empty;
-        
+
     [JsonPropertyName("status")]
     public ApprovalStatus Status { get; set; } = ApprovalStatus.Pending;
 
@@ -33,6 +34,9 @@ public class MenteeApplicationModel
 
     [JsonPropertyName("applicationDate")]
     public DateTime ApplicationDate { get; set; } = DateTime.Now;
+
+    [JsonPropertyName("approvedDate")]
+    public DateTime ApprovedDate { get; set; }
 
     [JsonPropertyName("fee")]
     public decimal Fee { get; set; }
