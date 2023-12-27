@@ -23,7 +23,7 @@ public class MenteeApplicationModel
 
     [JsonPropertyName("status")]
     public ApprovalStatus Status { get; set; } = ApprovalStatus.Pending;
-
+        
     // thanh toán hay chưa
     [JsonPropertyName("paymentStatus")]
     public PaymentStatus PayStatus { get; set; } = PaymentStatus.Failed;
@@ -47,16 +47,23 @@ public class MenteeApplicationModel
 
     [JsonPropertyName("menteeProfile")]
     public Mentee MenteeProfile { get; set; } = new Mentee();
+
     [JsonPropertyName("goal")]
     public string? Goal { get; set; } = string.Empty;
+
     [JsonPropertyName("personalDescription")]
     public string? PersonalDescription { get; set; } = string.Empty;
+
     [JsonPropertyName("expectation")]
     public string? Expectation { get; set; } = string.Empty;
+
     [JsonPropertyName("contactTimes")]
     public string? ContactTimes { get; set; } = string.Empty;
+
     [JsonPropertyName("learningTime")]
     public List<Event> LearningTime { get; set; } = new List<Event>();
+
     [JsonPropertyName("isPaid")]
-    public Boolean? IsPaid { get; set; } = false;
+    public bool? IsPaid { get; set; } = false;
+    
 }

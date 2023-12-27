@@ -20,7 +20,7 @@ namespace MentorShip.Controllers
         [HttpPost("createLearningProgress")]
         public async Task<IActionResult> CreateLearningProgress([FromBody] MenteeApplicationModel application)
         {
-            var endDate = application.StartDate.AddDays(application.Plan.Weeks * 7);
+            var endDate = DateTime.Now.AddDays(application.Plan.Weeks * 7);
             var learningProgress = new LearningProgress
             {
                 ApplicationId = application.Id,
