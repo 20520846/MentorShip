@@ -40,11 +40,10 @@ namespace MentorShip.Controllers
             var application = await _menteeApplicationService.GetMenteeApplicationByMenteeId(menteeId);
             return Ok(new { data = application });
         }
-
-        [HttpGet("getMenteeApplicationByMentorId/{mentorId}")]
-        public async Task<IActionResult> GetMenteeApplicationByMentorId(string mentorId)
+        [HttpGet("getMenteeApplicationByMentorId")]
+        public async Task<IActionResult> GetMenteeApplicationByMentorId([FromQuery] string mentorId, [FromQuery] int? year)
         {
-            var application = await _menteeApplicationService.GetMenteeApplicationByMentorId(mentorId);
+            var application = await _menteeApplicationService.GetMenteeApplicationByMentorId(mentorId, year);
             return Ok(new { data = application });
         }
 
