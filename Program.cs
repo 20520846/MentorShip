@@ -62,6 +62,7 @@ builder.Services.AddSingleton<QuestionService>();
 builder.Services.AddSingleton<MenteeExamService>();
 builder.Services.AddSingleton<AnswerService>();
 builder.Services.AddSingleton<FileService>();
+builder.Services.AddSingleton<FolderService>();
 
 builder.Services.AddSingleton<IConfiguration>(configuration);
 

@@ -29,3 +29,28 @@ public class FileModel
     [JsonPropertyName("createdDate")]
     public DateTime CreatedDate { get; set; } = DateTime.Now;
 }
+
+public class FolderModel
+{
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    [JsonPropertyName("id")]
+    public string? Id { get; set; }
+
+    [JsonPropertyName("mentorId")]
+    public string MentorId { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
+
+    [JsonPropertyName("createdDate")]
+    public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+    [JsonPropertyName("fileIds")]
+    public List<FileId> FileIds { get; set; } = new List<FileId>();
+}
+
+public class FileId
+{
+    public string Id { get; set; }
+}
