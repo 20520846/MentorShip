@@ -1206,7 +1206,7 @@
         }
       }
     },
-    "/learningProgress/getLearningProgressByMentorId/{mentorId}": {
+    "/learningProgress/getLearningProgressByMentorId/{mentorId}/{year}": {
       "get": {
         "tags": [
           "LearningProgress"
@@ -1219,6 +1219,16 @@
             "style": "simple",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -1477,7 +1487,7 @@
         }
       }
     },
-    "/menteeApplication/getMenteeApplicationByMentorId/{mentorId}": {
+    "/menteeApplication/getMenteeApplicationByMentorId": {
       "get": {
         "tags": [
           "MenteeApplication"
@@ -1485,11 +1495,19 @@
         "parameters": [
           {
             "name": "mentorId",
-            "in": "path",
-            "required": true,
-            "style": "simple",
+            "in": "query",
+            "style": "form",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -2639,7 +2657,8 @@
         "enum": [
           0,
           1,
-          2
+          2,
+          3
         ],
         "type": "integer",
         "format": "int32"
