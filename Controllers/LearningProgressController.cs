@@ -56,5 +56,15 @@ namespace MentorShip.Controllers
             var learningProgresses = await _learningProgressService.GetLearningProgressByMentorId(mentorId);
             return Ok(new { data = learningProgresses });
         }
+        [HttpGet("getLearningProgressByApplicationId/{applicationId}")]
+        public async Task<IActionResult> GetLearningProgressByApplicationId(string applicationId)
+        {
+            var learningProgress = await _learningProgressService.GetLearningProgressByApplicationId(applicationId);
+            if (learningProgress == null)
+            {
+                return NotFound();
+            }
+            return Ok(new { data = learningProgress });
+        }
     }
 }

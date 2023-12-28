@@ -82,6 +82,11 @@ namespace MentorShip.Services
             var menteeApplication = await _menteeApplicationCollection.Find(filter).FirstOrDefaultAsync();
             return menteeApplication;
         }
+        public async Task<MenteeApplicationModel> UpdateMenteeApplication(MenteeApplicationModel application)
+        {
+            await _menteeApplicationCollection.ReplaceOneAsync(m => m.Id == application.Id, application);
+            return application;
+        }
 
     }
 }

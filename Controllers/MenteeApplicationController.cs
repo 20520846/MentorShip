@@ -74,6 +74,30 @@ namespace MentorShip.Controllers
             }
         }
 
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Put(string id, [FromBody] MenteeApplicationModel menteeApplication)
+        {
+            try
+            {
+                var existingApplication = await _menteeApplicationService.GetMenteeApplicationById(id);
+                if (existingApplication == null)
+                {
+                    return NotFound();
+                }
+
+               
+                var updatedApplication = await _menteeApplicationService.UpdateMenteeApplication(menteeApplication);
+
+
+                return Ok(updatedApplication); // Return the updated mentor
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
         [HttpPost("checkRegistration")]
         public async Task<IActionResult> CheckMenteeRegistration([FromBody] MenteeMentorIds ids)
         {
