@@ -11,11 +11,13 @@ namespace MentorShip.Controllers
     {
         private readonly MenteeApplicationService _menteeApplicationService;
         private readonly LearningProgressService _learningProgressService;
+        private readonly LearningTestProgressService _learningTestProgressService;
 
-        public MenteeApplicationController(MenteeApplicationService menteeApplicationService, LearningProgressService learningProgressService)
+        public MenteeApplicationController(MenteeApplicationService menteeApplicationService, LearningProgressService learningProgressService, LearningTestProgressService learningTestProgressService)
         {
             _menteeApplicationService = menteeApplicationService;
             _learningProgressService = learningProgressService;
+            _learningTestProgressService = learningTestProgressService;
         }
 
         [HttpGet("getAllMenteeApplication")]
@@ -50,6 +52,18 @@ namespace MentorShip.Controllers
         public async Task<IActionResult> UpdateMenteeApplicationStatus(string id, [FromBody] ApprovalStatus status)
         {
             var application = await _menteeApplicationService.UpdateMenteeApplicationStatus(id, status);
+            if (status == ApprovalStatus.Approved)
+            {
+                var learningTestProgress = new LearningTestProgress
+                {
+                    ApplicationId = application.Id,
+                    StartDate = DateTime.Now,
+                    CallTimesLeft = 1,
+                    MentorId = application.MentorId,
+                    MenteeId = application.MenteeProfile.Id
+                };
+                await _learningTestProgressService.CreateLearningTestProgress(learningTestProgress);
+            }
             return Ok(new { data = application });
         }
 
@@ -85,7 +99,7 @@ namespace MentorShip.Controllers
                     return NotFound();
                 }
 
-               
+
                 var updatedApplication = await _menteeApplicationService.UpdateMenteeApplication(menteeApplication);
 
 

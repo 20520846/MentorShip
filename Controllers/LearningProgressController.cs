@@ -28,8 +28,8 @@ namespace MentorShip.Controllers
                 EndDate = endDate,
                 CallTimesLeft = application.Plan.CallTimes,
                 AdditionalCallTimes = 0,
-                MentorId  = application.MentorId,
-                MenteeId  = application.MenteeProfile.Id
+                MentorId = application.MentorId,
+                MenteeId = application.MenteeProfile.Id
             };
             await _learningProgressService.CreateLearningProgress(learningProgress);
             return Ok(new { data = learningProgress });
@@ -66,5 +66,41 @@ namespace MentorShip.Controllers
             }
             return Ok(new { data = learningProgress });
         }
+    }
+
+    [ApiController]
+    [Route("learningTestProgress")]
+    public class LearningTestProgressController : ControllerBase
+    {
+        private readonly LearningTestProgressService _learningTestProgressService;
+
+        public LearningTestProgressController(LearningTestProgressService learningTestProgressService)
+        {
+            _learningTestProgressService = learningTestProgressService;
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateLearningTestProgress([FromBody] MenteeApplicationModel application)
+        {
+            var learningTestProgress = new LearningTestProgress
+            {
+                ApplicationId = application.Id,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now + TimeSpan.FromDays(7),
+                CallTimesLeft = 1,
+                MentorId = application.MentorId,
+                MenteeId = application.MenteeProfile.Id
+            };
+            await _learningTestProgressService.CreateLearningTestProgress(learningTestProgress);
+            return Ok(new { data = learningTestProgress });
+        }
+
+        [HttpGet("getLearningTestProgressByMenteeId/{menteeId}")]
+        public async Task<IActionResult> GetLearningTestProgressByMenteeId(string menteeId)
+        {
+            var learningTestProgresses = await _learningTestProgressService.GetLearningTestProgressByMenteeId(menteeId);
+            return Ok(new { data = learningTestProgresses });
+        }
+
     }
 }
