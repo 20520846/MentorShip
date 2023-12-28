@@ -7,7 +7,7 @@ using MongoDB.Bson.Serialization.Attributes;
 public enum PaymentStatus
 {
     Success,
-    Failed
+    Failed,
 }
 
 public class Payment

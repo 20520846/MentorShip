@@ -7,8 +7,6 @@ using MongoDB.Bson.Serialization.Attributes;
 
 public class Event
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
     [JsonPropertyName("id")]
     public string? Id { get; set; }
 

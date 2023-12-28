@@ -20,7 +20,7 @@ namespace MentorShip.Controllers
         [HttpPost("createLearningProgress")]
         public async Task<IActionResult> CreateLearningProgress([FromBody] MenteeApplicationModel application)
         {
-            var endDate = application.StartDate.AddDays(application.Plan.Weeks * 7);
+            var endDate = DateTime.Now.AddDays(application.Plan.Weeks * 7);
             var learningProgress = new LearningProgress
             {
                 ApplicationId = application.Id,
@@ -55,6 +55,16 @@ namespace MentorShip.Controllers
         {
             var learningProgresses = await _learningProgressService.GetLearningProgressByMentorId(mentorId);
             return Ok(new { data = learningProgresses });
+        }
+        [HttpGet("getLearningProgressByApplicationId/{applicationId}")]
+        public async Task<IActionResult> GetLearningProgressByApplicationId(string applicationId)
+        {
+            var learningProgress = await _learningProgressService.GetLearningProgressByApplicationId(applicationId);
+            if (learningProgress == null)
+            {
+                return NotFound();
+            }
+            return Ok(new { data = learningProgress });
         }
     }
 }

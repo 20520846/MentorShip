@@ -38,7 +38,6 @@ public class Plan
 
     [JsonPropertyName("createdAt")]
     public DateTime CreatedAt { get; set; } = DateTime.Now;
-
     [JsonPropertyName("isActive")]
-    public bool IsActive { get; set; } = true;
+    public Boolean IsActive { get; set; } = true;
 }
