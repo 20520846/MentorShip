@@ -42,10 +42,20 @@ namespace MentorShip.Services
             return await _paymentCollection.Find(payment => payment.MenteeApplicationId == menteeApplicationId).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Payment>> GetPaymentsByMentorId(string mentorId)
+        public async Task<List<Payment>> GetPaymentsByMentorId(string mentorId, int? year)
         {
-            return await _paymentCollection.Find(payment => payment.MentorId == mentorId).ToListAsync();
+            var builder = Builders<Payment>.Filter;
+            var filter = builder.Eq(p => p.MentorId, mentorId);
+
+            if (year.HasValue)
+            {
+                filter = filter & builder.Gte(p => p.CreatedAt, new DateTime(year.Value, 1, 1)) &
+                         builder.Lt(p => p.CreatedAt, new DateTime(year.Value + 1, 1, 1));
+            }
+
+            return await _paymentCollection.Find(filter).ToListAsync();
         }
+
 
         public async Task<List<Payment>> GetPaymentsByMenteeApplicationId(string menteeApplicationId)
         {

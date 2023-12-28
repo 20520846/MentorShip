@@ -108,6 +108,12 @@ namespace MentorShip.Controllers
             var payments = await _paymentService.GetPaymentsByUserId(userId);
             return Ok(new { data = payments });
         }
+        [HttpGet("getPaymentsByMentorId/{mentorId}")]
+        public async Task<IActionResult> GetPaymentsByMentorId(string mentorId, [FromQuery] int? year)
+        {
+            var payments = await _paymentService.GetPaymentsByMentorId(mentorId, year);
+            return Ok(new { data = payments });
+        }
 
         [HttpDelete("deletePayments/{menteeApplicationId}")]
         public async Task<ActionResult> DeletePaymentsByMenteeApplicationId(string menteeApplicationId)

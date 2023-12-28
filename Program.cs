@@ -47,12 +47,14 @@ builder.Host.UseNServiceBus(context =>
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<MongoDBService>();
 builder.Services.AddSingleton<ApplicationService>();
+builder.Services.AddSingleton<LearningProgressService>();
+builder.Services.AddSingleton<LearningTestProgressService>();
+
 builder.Services.AddSingleton<MenteeApplicationService>();
 builder.Services.AddSingleton<CourseService>();
 builder.Services.AddSingleton<FieldService>();
 builder.Services.AddSingleton<SkillService>();
 builder.Services.AddSingleton<MentorService>();
-builder.Services.AddSingleton<LearningProgressService>();
 builder.Services.AddSingleton<MenteeService>();
 builder.Services.AddSingleton<PaymentService>();
 builder.Services.AddSingleton<CommentService>();
