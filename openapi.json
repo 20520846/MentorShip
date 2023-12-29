@@ -1293,7 +1293,7 @@
         }
       }
     },
-    "/learningTestProgress/getLearningTestProgressByMenteeId/{menteeId}": {
+    "/learningTestProgress/getByMenteeId/{menteeId}": {
       "get": {
         "tags": [
           "LearningTestProgress"
@@ -1309,6 +1309,48 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/learningTestProgress/update/{id}": {
+      "put": {
+        "tags": [
+          "LearningTestProgress"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LearningTestProgress"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LearningTestProgress"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LearningTestProgress"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success"
@@ -2960,6 +3002,47 @@
           "additionalCallTimes": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LearningTestProgress": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "mentorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "menteeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "callTimesLeft": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cancelStatus": {
+            "type": "boolean"
+          },
+          "reasonCancel": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
