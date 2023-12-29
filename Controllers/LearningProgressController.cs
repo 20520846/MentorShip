@@ -95,11 +95,18 @@ namespace MentorShip.Controllers
             return Ok(new { data = learningTestProgress });
         }
 
-        [HttpGet("getLearningTestProgressByMenteeId/{menteeId}")]
+        [HttpGet("getByMenteeId/{menteeId}")]
         public async Task<IActionResult> GetLearningTestProgressByMenteeId(string menteeId)
         {
             var learningTestProgresses = await _learningTestProgressService.GetLearningTestProgressByMenteeId(menteeId);
             return Ok(new { data = learningTestProgresses });
+        }
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateLearningTestProgress(string id, [FromBody] LearningTestProgress updatedProgress)
+        {
+            var learningTestProgress = await _learningTestProgressService.UpdateLearningTestProgress(id, updatedProgress);
+            return Ok(new { data = learningTestProgress });
         }
 
     }

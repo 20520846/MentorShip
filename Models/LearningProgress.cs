@@ -36,6 +36,8 @@ public class LearningProgress
 
 public class LearningTestProgress
 {
+	[BsonId]
+	[BsonRepresentation(BsonType.ObjectId)]
 	[JsonPropertyName("id")]
 	public string? Id { get; set; }
 
@@ -56,6 +58,12 @@ public class LearningTestProgress
 
 	[JsonPropertyName("callTimesLeft")]
 	public int CallTimesLeft { get; set; } = 1;
+
+	[JsonPropertyName("cancelStatus")]
+	public bool CancelStatus { get; set; } = false;
+
+	[JsonPropertyName("reasonCancel")]
+	public string ReasonCancel { get; set; } = string.Empty;
 }
 
 

@@ -85,7 +85,10 @@ namespace MentorShip.Services
 
         public async Task<List<LearningTestProgress>> GetLearningTestProgressByMenteeId(string menteeId)
         {
-            var filter = Builders<LearningTestProgress>.Filter.Eq(lp => lp.MenteeId, menteeId);
+            var filter = Builders<LearningTestProgress>.Filter.And(
+                Builders<LearningTestProgress>.Filter.Eq(lp => lp.MenteeId, menteeId),
+                Builders<LearningTestProgress>.Filter.Eq(lp => lp.CancelStatus, false)
+            );
             return await _learningTestProgressCollection.Find(filter).ToListAsync();
         }
 
@@ -94,5 +97,11 @@ namespace MentorShip.Services
             var filter = Builders<LearningTestProgress>.Filter.Eq(lp => lp.MentorId, mentorId);
             return await _learningTestProgressCollection.Find(filter).ToListAsync();
         }
+
+        // public async Task<LearningTestProgress> CancelLearingTestPrgress(string learningTestId)
+        // {
+        //     var learningTest = await _learningTestProgressCollection.Find(ltp => ltp.Id == learningTestId).FirstOrDefaultAsync();
+
+        // }
     }
 }
