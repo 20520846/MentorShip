@@ -50,12 +50,13 @@ namespace MentorShip.Controllers
             return Ok(new { data = learningProgresses });
         }
 
-        [HttpGet("getLearningProgressByMentorId/{mentorId}")]
-        public async Task<IActionResult> GetLearningProgressByMentorId(string mentorId)
+        [HttpGet("getLearningProgressByMentorId/{mentorId}/{year?}")]
+        public async Task<IActionResult> GetLearningProgressByMentorId(string mentorId, int? year)
         {
-            var learningProgresses = await _learningProgressService.GetLearningProgressByMentorId(mentorId);
+            var learningProgresses = await _learningProgressService.GetLearningProgressByMentorId(mentorId, year);
             return Ok(new { data = learningProgresses });
         }
+
         [HttpGet("getLearningProgressByApplicationId/{applicationId}")]
         public async Task<IActionResult> GetLearningProgressByApplicationId(string applicationId)
         {

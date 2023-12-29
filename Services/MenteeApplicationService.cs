@@ -53,10 +53,11 @@ namespace MentorShip.Services
             await _menteeApplicationCollection.InsertOneAsync(menteeApplication);
             return menteeApplication;
         }
-
-        public async Task<List<MenteeApplicationModel>> GetMenteeApplicationByMentorId(string mentorId)
+        public async Task<List<MenteeApplicationModel>> GetMenteeApplicationByMentorId(string mentorId, int? year)
         {
-            return await _menteeApplicationCollection.Find(a => a.MentorId == mentorId).ToListAsync();
+            var builder = Builders<MenteeApplicationModel>.Filter;
+            var filter = builder.Eq(a => a.MentorId, mentorId);
+            return await _menteeApplicationCollection.Find(filter).ToListAsync();
         }
 
         public async Task<MenteeApplicationModel> UpdatePayStatus(string id, PaymentStatus status)

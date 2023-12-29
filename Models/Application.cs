@@ -8,7 +8,8 @@ public enum ApprovalStatus
 {
     Pending,
     Approved,
-    Rejected
+    Rejected,
+    Canceled,
 }
 public class Application
 {

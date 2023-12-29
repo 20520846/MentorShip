@@ -36,9 +36,17 @@ namespace MentorShip.Services
             return await _learningProgressCollection.Find(filter).ToListAsync();
         }
 
-        public async Task<List<LearningProgress>> GetLearningProgressByMentorId(string mentorId)
+        public async Task<List<LearningProgress>> GetLearningProgressByMentorId(string mentorId, int? year)
         {
-            var filter = Builders<LearningProgress>.Filter.Eq(lp => lp.MentorId, mentorId);
+            var builder = Builders<LearningProgress>.Filter;
+            var filter = builder.Eq(lp => lp.MentorId, mentorId);
+
+            if (year.HasValue)
+            {
+                filter = filter & builder.Gte(lp => lp.StartDate, new DateTime(year.Value, 1, 1)) &
+                         builder.Lt(lp => lp.StartDate, new DateTime(year.Value + 1, 1, 1));
+            }
+
             return await _learningProgressCollection.Find(filter).ToListAsync();
         }
         public async Task<LearningProgress> GetLearningProgressByApplicationId(string applicationId)
