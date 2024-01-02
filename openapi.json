@@ -1729,6 +1729,36 @@
         }
       }
     },
+    "/menteeApplication/getMenteeApplicationByMenteeIdAndMentorId": {
+      "get": {
+        "tags": [
+          "MenteeApplication"
+        ],
+        "parameters": [
+          {
+            "name": "menteeId",
+            "in": "query",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mentorId",
+            "in": "query",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/menteeExam/create": {
       "post": {
         "tags": [
