@@ -10,14 +10,16 @@ namespace MentorShip.Controllers
     public class ApplicationController : ControllerBase
     {
         private readonly ApplicationService _applicationService;
+        private readonly MentorService _mentorService;
 
-        public ApplicationController(ApplicationService applicationService)
+        public ApplicationController(ApplicationService applicationService, MentorService mentorService)
         {
+            _mentorService = mentorService;
             _applicationService = applicationService;
         }
 
         [HttpGet("getAllApplication")]
-              public async Task<IActionResult> GetAllApplication()
+        public async Task<IActionResult> GetAllApplication()
         {
             var applications = await _applicationService.GetAllApplication();
             return Ok(new { data = applications });

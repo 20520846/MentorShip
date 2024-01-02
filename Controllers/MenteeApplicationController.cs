@@ -67,7 +67,7 @@ namespace MentorShip.Controllers
         }
 
         [HttpDelete("deleteMenteeApplication/{id}")]
-        public async Task<IActionResult> DeleteMenteeApplication(string id)
+        public async Task<IActionResult> DeleteMenteaeApplication(string id)
         {
             await _menteeApplicationService.DeleteMenteeApplication(id);
             return Ok();
@@ -153,6 +153,12 @@ namespace MentorShip.Controllers
             }
         }
 
+        [HttpGet("getMenteeApplicationByMenteeIdAndMentorId")]
+        public async Task<IActionResult> GetMenteeApplicationByMenteeIdAndMentorId(string menteeId, string mentorId)
+        {
+            var application = await _menteeApplicationService.GetMenteeApplicationByMenteeIdAndMentorId(menteeId, mentorId);
+            return Ok(new { data = application });
+        }
     }
 }
 public class MenteeMentorIds
