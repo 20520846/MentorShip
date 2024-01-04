@@ -14,7 +14,7 @@ namespace MentorShip.Services
         public MentorService(IOptions<MongoDBSettings> mongoDBSettings, SkillService skillService) : base(mongoDBSettings)
         {
             _mentorCollection = database.GetCollection<Mentor>("mentors");
-            _skillService = skillService; 
+            _skillService = skillService;
         }
         public async Task<Mentor> GetMentorById(string id)
         {
@@ -31,7 +31,7 @@ namespace MentorShip.Services
         {
             return await _mentorCollection.Find(a => true).ToListAsync();
         }
-        public async Task<List<Mentor>> SearchMentor(string? name = null, string? skillId = null, int? minPrice = null, int? maxPrice = null)
+        public async Task<List<Mentor>> SearchMentor(string? name = null, string[]? skillIds = null, int? minPrice = null, int? maxPrice = null)
         {
             var builder = Builders<Mentor>.Filter;
             var filter = builder.Empty;
@@ -41,11 +41,12 @@ namespace MentorShip.Services
                 var nameFilter = builder.Where(m => m.FirstName.Contains(name) || m.LastName.Contains(name));
                 filter = builder.And(filter, nameFilter);
             }
-            if (!string.IsNullOrEmpty(skillId))
+            if (skillIds != null && skillIds.Any())
             {
-                var skillFilter = builder.Where(m => m.SkillIds.Contains(skillId));
+                var skillFilter = builder.All("SkillIds", skillIds);
                 filter = builder.And(filter, skillFilter);
             }
+            Console.WriteLine(filter);
             //if (minPrice.HasValue)
             //{
             //    var minPriceFilter = builder.Gte(m => m.Price, minPrice.Value);

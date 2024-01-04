@@ -41,9 +41,9 @@ namespace MentorShip.Controllers
             }
         }
         [HttpGet("search")]
-        public async Task<IActionResult> Search([FromQuery] string? name, [FromQuery] string? skillId, [FromQuery] int? minPrice, [FromQuery] int? maxPrice)
+        public async Task<IActionResult> Search([FromQuery] string? name, [FromQuery] string[]? skillIds, [FromQuery] int? minPrice, [FromQuery] int? maxPrice)
         {
-            var mentors = await _mentorService.SearchMentor(name, skillId, minPrice, maxPrice);
+            var mentors = await _mentorService.SearchMentor(name, skillIds, minPrice, maxPrice);
             return Ok(new { data = mentors });
         }
         [HttpPut("update/{id}")]

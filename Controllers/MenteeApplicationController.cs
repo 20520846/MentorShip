@@ -153,7 +153,7 @@ namespace MentorShip.Controllers
             }
         }
 
-        [HttpGet("getMenteeApplicationByMenteeIdAndMentorId")]
+        [HttpGet("getMenteeApplicationByMenteeIdAndMentorId/{menteeId}/{mentorId}")]
         public async Task<IActionResult> GetMenteeApplicationByMenteeIdAndMentorId(string menteeId, string mentorId)
         {
             var application = await _menteeApplicationService.GetMenteeApplicationByMenteeIdAndMentorId(menteeId, mentorId);
