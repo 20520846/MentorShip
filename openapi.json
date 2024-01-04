@@ -3314,12 +3314,19 @@
           },
           "ratingStar": {
             "type": "number",
-            "format": "double",
-            "nullable": true
+            "format": "double"
+          },
+          "ratingCount": {
+            "type": "integer",
+            "format": "int32"
           },
           "introduction": {
             "type": "string",
             "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
           },
           "isUnavailable": {
             "type": "boolean",
