@@ -1729,7 +1729,7 @@
         }
       }
     },
-    "/menteeApplication/getMenteeApplicationByMenteeIdAndMentorId": {
+    "/menteeApplication/getMenteeApplicationByMenteeIdAndMentorId/{menteeId}/{mentorId}": {
       "get": {
         "tags": [
           "MenteeApplication"
@@ -1737,16 +1737,18 @@
         "parameters": [
           {
             "name": "menteeId",
-            "in": "query",
-            "style": "form",
+            "in": "path",
+            "required": true,
+            "style": "simple",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "mentorId",
-            "in": "query",
-            "style": "form",
+            "in": "path",
+            "required": true,
+            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -2026,11 +2028,14 @@
             }
           },
           {
-            "name": "skillId",
+            "name": "skillIds",
             "in": "query",
             "style": "form",
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           },
           {
