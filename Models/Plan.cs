@@ -19,7 +19,7 @@ public class Plan
     public string? Id { get; set; }
 
     [JsonPropertyName("mentorId")]
-    public string MentorId { get; set; } = null;
+    public string MentorId { get; set; }
 
     [JsonPropertyName("name")]
     public NamePlan Name { get; set; } = NamePlan.Lite;

@@ -29,7 +29,7 @@ namespace MentorShip.Controllers
                 {
                     return BadRequest(new { error = "Mentee or Mentor not found" });
                 }
-                await _commentService.CreateComment(comment);
+                await _commentService.CreateComment(comment, mentor);
                 return CreatedAtAction(nameof(Get), new { id = comment.Id }, comment);
             }
             catch (Exception ex)

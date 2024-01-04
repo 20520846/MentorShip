@@ -10,11 +10,13 @@ namespace MentorShip.Services
     {
         private readonly IMongoCollection<Mentor> _mentorCollection;
         private readonly SkillService _skillService;
+        private readonly PlanService _planService;
 
-        public MentorService(IOptions<MongoDBSettings> mongoDBSettings, SkillService skillService) : base(mongoDBSettings)
+        public MentorService(IOptions<MongoDBSettings> mongoDBSettings, SkillService skillService, PlanService planService) : base(mongoDBSettings)
         {
             _mentorCollection = database.GetCollection<Mentor>("mentors");
             _skillService = skillService;
+            _planService = planService;
         }
         public async Task<Mentor> GetMentorById(string id)
         {
@@ -25,6 +27,20 @@ namespace MentorShip.Services
         public async Task<Mentor> RegisterMentor(Mentor mentor)
         {
             await _mentorCollection.InsertOneAsync(mentor);
+            Plan newPlan = new Plan
+            {
+                MentorId = mentor.Id,
+                Name = 0,
+                Price = 100000,
+                CallTimes = 1,
+                Weeks = 4,
+                Description = "",
+                CreatedAt = DateTime.Now,
+                IsActive = true
+            };
+            var plan = await _planService.CreatePlan(newPlan);
+            mentor.Price = plan.Price;
+            await _mentorCollection.ReplaceOneAsync(m => m.Id == mentor.Id, mentor);
             return mentor;
         }
         public async Task<List<Mentor>> GetAllMentors()
@@ -47,16 +63,16 @@ namespace MentorShip.Services
                 filter = builder.And(filter, skillFilter);
             }
             Console.WriteLine(filter);
-            //if (minPrice.HasValue)
-            //{
-            //    var minPriceFilter = builder.Gte(m => m.Price, minPrice.Value);
-            //    filter = builder.And(filter, minPriceFilter);
-            //}
-            //if (maxPrice.HasValue)
-            //{
-            //    var maxPriceFilter = builder.Lte(m => m.Price, maxPrice.Value);
-            //    filter = builder.And(filter, maxPriceFilter);
-            //}
+            if (minPrice.HasValue)
+            {
+                var minPriceFilter = builder.Gte(m => m.Price, minPrice.Value);
+                filter = builder.And(filter, minPriceFilter);
+            }
+            if (maxPrice.HasValue)
+            {
+                var maxPriceFilter = builder.Lte(m => m.Price, maxPrice.Value);
+                filter = builder.And(filter, maxPriceFilter);
+            }
 
             return await _mentorCollection.Find(filter).ToListAsync();
         }

@@ -50,17 +50,23 @@ public class Mentor
     [BsonRepresentation(BsonType.ObjectId)]
     [JsonPropertyName("skillIds")]
     public List<string> SkillIds { get; set; } = new List<string>();
-                
+
     [JsonPropertyName("imageUrls")]
     public List<string> ImageUrls { get; set; } = new List<string>();
-                        
+
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     [JsonPropertyName("ratingStar")]
-    public double? RatingStar { get; set; } = 0;
+    public double RatingStar { get; set; } = 0;
+
+    [JsonPropertyName("ratingCount")]
+    public int RatingCount { get; set; } = 0;
 
     [JsonPropertyName("introduction")]
     public string? Introduction { get; set; } = string.Empty;
+
+    [JsonPropertyName("price")]
+    public decimal Price { get; set; } = 0;
 
     [JsonPropertyName("isUnavailable")]
     public bool? IsUnavailable { get; set; } = false;
