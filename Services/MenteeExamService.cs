@@ -50,14 +50,17 @@ namespace MentorShip.Services
     public class AnswerService : MongoDBService
     {
         private readonly IMongoCollection<Answer> _answerCollection;
-        public AnswerService(IOptions<MongoDBSettings> mongoDBSettings) : base(mongoDBSettings)
+        private readonly MenteeExamService _menteeExamService;
+        public AnswerService(IOptions<MongoDBSettings> mongoDBSettings, MenteeExamService menteeExamService) : base(mongoDBSettings)
         {
             _answerCollection = database.GetCollection<Answer>("answer");
+            _menteeExamService = menteeExamService;
         }
 
         public async Task<Answer> CreateAnswer(Answer answer)
         {
             await _answerCollection.InsertOneAsync(answer);
+            // await _menteeExamService.UpdateNumberAns(answer.MenteeExamId, 1);
             return answer;
         }
 

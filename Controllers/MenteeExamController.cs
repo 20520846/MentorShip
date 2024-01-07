@@ -48,6 +48,29 @@ namespace MentorShip.Controllers
         {
             return await _menteeExamService.GetMenteeExamByMentorId(mentorId);
         }
+
+        [HttpPut("updateNumberAns/{id}")]
+        public async Task<IActionResult> Put(string id, [FromBody] int NumberAns)
+        {
+            try
+            {
+                var menteeExam = await _menteeExamService.GetMenteeExamById(id);
+                if (menteeExam == null)
+                {
+                    return BadRequest(new { error = "MenteeExam not found" });
+                }
+                else
+                {
+                    await _menteeExamService.UpdateNumberAns(id, NumberAns);
+                    return Ok(new { data = menteeExam });
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
     }
 
     [ApiController]
@@ -69,8 +92,7 @@ namespace MentorShip.Controllers
         {
             try
             {
-                await _answerService.CreateAnswer(answer);
-                await _menteeExamService.UpdateNumberAns(answer.MenteeExamId, 1);
+                var data = await _answerService.CreateAnswer(answer);
                 return Ok(new { data = answer });
             }
             catch (Exception ex)
