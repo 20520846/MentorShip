@@ -20,6 +20,12 @@ namespace MentorShip.Services
             return mentee;
         }
 
+        public async Task<List<Mentee>> GetAllMentees()
+        {
+            var mentees = await _menteeCollection.Find(new BsonDocument()).ToListAsync();
+            return mentees;
+        }
+
         public async Task<Mentee> RegisterMentee(Mentee mentee)
         {
             await _menteeCollection.InsertOneAsync(mentee);
