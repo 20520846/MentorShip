@@ -22,10 +22,10 @@ namespace MentorShip.Controllers
 
         [HttpGet("get")]
 
-        public async Task<IActionResult> GetAllMentors()
+        public async Task<List<Mentor>> GetAllMentors()
         {
-            var mentors = await _mentorService.GetAllMentors();
-            return Ok(new { data = mentors });
+           return await _mentorService.GetAllMentors();
+            
         }
         [HttpPost("create")]
         public async Task<IActionResult> Post([FromBody] Mentor mentor)

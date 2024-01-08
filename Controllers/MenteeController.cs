@@ -21,6 +21,12 @@ namespace MentorShip.Controllers
         }
 
 
+        [HttpGet("get")]
+        public async Task<List<Mentee>> Get()
+        {
+            return await _menteeService.GetAllMentees();
+        }
+
 
         [HttpPost("create")]
         public async Task<IActionResult> Post([FromBody] Mentee mentee)

@@ -45,7 +45,8 @@ namespace MentorShip.Services
         }
         public async Task<List<Mentor>> GetAllMentors()
         {
-            return await _mentorCollection.Find(a => true).ToListAsync();
+            var mentor = await _mentorCollection.Find(a => true).ToListAsync();
+            return mentor;
         }
         public async Task<List<Mentor>> SearchMentor(string? name = null, string[]? skillIds = null, int? minPrice = null, int? maxPrice = null)
         {
