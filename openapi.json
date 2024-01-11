@@ -2449,6 +2449,29 @@
         }
       }
     },
+    "/api/mentor/updateLockStatus/{mentorId}": {
+      "put": {
+        "tags": [
+          "Mentor"
+        ],
+        "parameters": [
+          {
+            "name": "mentorId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/payment": {
       "post": {
         "tags": [
@@ -3675,6 +3698,10 @@
             "format": "double"
           },
           "isUnavailable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isLocked": {
             "type": "boolean",
             "nullable": true
           }
