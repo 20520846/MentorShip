@@ -106,6 +106,25 @@ namespace MentorShip.Services
             return await _learningTestProgressCollection.Find(filter).ToListAsync();
         }
 
+        public async Task<LearningTestProgress> UpdatePayStatus(string applicationId, PaymentStatus status)
+        {
+            var learningTest = await _learningTestProgressCollection.Find(ltp => ltp.ApplicationId == applicationId).FirstOrDefaultAsync();
+            if (learningTest != null)
+            {
+                if (status == PaymentStatus.Success)
+                {
+                    learningTest.IsPaid = true;
+                }
+                else
+                {
+                    learningTest.IsPaid = false;
+                }
+                await _learningTestProgressCollection.ReplaceOneAsync(ltp => ltp.Id == learningTest.Id, learningTest);
+                return learningTest;
+            }
+            return null;
+        }
+
         // public async Task<LearningTestProgress> CancelLearingTestPrgress(string learningTestId)
         // {
         //     var learningTest = await _learningTestProgressCollection.Find(ltp => ltp.Id == learningTestId).FirstOrDefaultAsync();

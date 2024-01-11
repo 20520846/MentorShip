@@ -24,12 +24,15 @@ namespace MentorShip.Controllers
         private readonly IConfiguration _configuration;
         private readonly MenteeApplicationService _menteeApplicationService;
 
-        public PaymentController(PaymentService paymentService, IMessageSession messageSession, IConfiguration configuration, MenteeApplicationService menteeApplicationService)
+        private readonly LearningTestProgressService _learningTestProgressService;
+
+        public PaymentController(PaymentService paymentService, IMessageSession messageSession, IConfiguration configuration, MenteeApplicationService menteeApplicationService, LearningTestProgressService learningTestProgressService)
         {
             _paymentService = paymentService;
             _messageSession = messageSession;
             _configuration = configuration;
             _menteeApplicationService = menteeApplicationService;
+            _learningTestProgressService = learningTestProgressService;
         }
 
         [HttpPost]
@@ -46,7 +49,7 @@ namespace MentorShip.Controllers
                 {
                     var createdPayment = await _paymentService.CreatePayment(payment);
                     await _menteeApplicationService.UpdatePayStatus(payment.MenteeApplicationId, payment.Status);
-
+                    await _learningTestProgressService.UpdatePayStatus(payment.MenteeApplicationId, payment.Status);
                     var message = new Message
                     {
                         Type = "PAYMENT",

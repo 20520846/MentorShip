@@ -64,6 +64,9 @@ public class LearningTestProgress
 
 	[JsonPropertyName("reasonCancel")]
 	public string ReasonCancel { get; set; } = string.Empty;
+
+	[JsonPropertyName("isPaid")]
+	public bool IsPaid { get; set; } = false;
 }
 
 
