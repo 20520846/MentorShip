@@ -70,4 +70,7 @@ public class Mentor
 
     [JsonPropertyName("isUnavailable")]
     public bool? IsUnavailable { get; set; } = false;
+
+    [JsonPropertyName("isLocked")]
+    public bool? IsLocked { get; set; } = false;
 }

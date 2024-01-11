@@ -24,8 +24,8 @@ namespace MentorShip.Controllers
 
         public async Task<List<Mentor>> GetAllMentors()
         {
-           return await _mentorService.GetAllMentors();
-            
+            return await _mentorService.GetAllMentors();
+
         }
         [HttpPost("create")]
         public async Task<IActionResult> Post([FromBody] Mentor mentor)
@@ -74,6 +74,28 @@ namespace MentorShip.Controllers
             {
                 var skills = await _mentorService.GetSkillsByMentorId(mentorId);
                 return Ok(new { data = skills });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
+        [HttpPut("updateLockStatus/{mentorId}")]
+        public async Task<IActionResult> UpdateLockStatus(string mentorId)
+        {
+            try
+            {
+                var mentor = await _mentorService.GetMentorById(mentorId);
+                if (mentor == null)
+                {
+                    return NotFound();
+                }
+
+                mentor.IsLocked = !mentor.IsLocked;
+                await _mentorService.UpdateMentor(mentor);
+
+                return Ok(new { data = mentor });
             }
             catch (Exception ex)
             {

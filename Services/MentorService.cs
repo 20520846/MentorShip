@@ -74,7 +74,7 @@ namespace MentorShip.Services
                 var maxPriceFilter = builder.Lte(m => m.Price, maxPrice.Value);
                 filter = builder.And(filter, maxPriceFilter);
             }
-
+            filter = builder.And(filter, builder.Eq(m => m.IsLocked, false));
             return await _mentorCollection.Find(filter).ToListAsync();
         }
         public async Task<Mentor> UpdateMentor(Mentor mentor)
